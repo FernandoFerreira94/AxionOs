@@ -13,10 +13,15 @@ export default function dashboard() {
       />
       <CardDashboard />
       <FilterOrdem />
-      <section className=" mt-6 grid grid-cols-2 gap-6">
-        <SectionPreventivas />
-        <SectionAtividades />
-      </section>
+   <section className="mt-6 grid grid-cols-3 gap-6">
+  <div className="col-span-2">
+    <SectionPreventivas />
+  </div>
+
+  <div className="col-span-1">
+    <SectionAtividades />
+  </div>
+</section>
     </main>
   );
 }

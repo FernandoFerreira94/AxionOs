@@ -6,27 +6,65 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, MoveRight   } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
+import { statusConfig } from "@/src/app/utils/statusConfig";
 
-const listAtividades = [
+interface Props {
+  os: string,
+  status: "Aberto" |  "Em Execução" | "Aguardando Material" | "Aguardando Fiscalização" | "Finalizado",
+  preStatus? :"Aberto" |  "Em Execução" | "Aguardando Material" | "Aguardando Fiscalização" | "Finalizado" | null,
+  tipoServico: "Corretiva" | "Melhoria" | "Acompanhamento",
+  tipo: "Refrigeração" | "Eletrico",
+  atividade: string,
+  tecnico: string,
+  dataAbertura: Date,
+  dataFinalizado?: Date | null,
+  descricao: string,
+  local: string,
+  complexo: string,
+  apoio: string | null
+}
+
+const listAtividades: Props[]  = [
   {
     os: "#1023",
-    status: "Finalizado",
+    status: "Aberto",
+    preStatus: null,
     tipoServico: "Corretiva",
     tipo: "Refrigeração",
     atividade: "Ar-Condicionado",
     tecnico: "Eduardo Perotti",
     dataAbertura: new Date(2026, 0, 12),
-    dataConclusao: new Date(2026, 0, 19),
+    dataFinalizado: new Date(2026, 0, 19),
     descricao: "Completado Gas R-22",
     local: "Qto 04",
     complexo: "Shopping",
     apoio: null,
   },
+  {
+    os: "#AC1245",
+    status: "Aguardando Material",
+    preStatus: "Aberto",
+    tipoServico: "Melhoria",
+    tipo: "Eletrico",
+    atividade: "Troca de luminaria",
+    tecnico: "Fernando Pedro",
+    dataAbertura: new Date(2026, 0, 23),
+    dataFinalizado: new Date(2026,0,24),
+    descricao: "Troca de 4 luminarias, aguardando material",
+    local: "Mall NS Barra",
+    complexo: "Shopping",
+    apoio: null,
+  },
+
 ];
 
+
+
+
 export default function SectionAtividades() {
+ 
   return (
     <Card className="border-gray-400/40">
       <CardHeader className="">
@@ -43,39 +81,61 @@ export default function SectionAtividades() {
       </CardHeader>
       <CardContent>
         <ul className={`${color.textBranco}`}>
-          {listAtividades.map((item) => (
-            <li
-              key={item.os}
-              className="flex justify-between flex-col gap-2 border-b border-gray-200/10 p-2"
-            >
-              <div
-                className={`grid grid-cols-4 items-center ${color.textSecondary}`}
+
+ {listAtividades.map((item) => {
+      const config = statusConfig[item.status as keyof typeof statusConfig];
+ console.log(config)
+      if (!config) return null; // proteção mínima
+
+      const StatusIcon = config.icon;
+
+      return (
+        <li
+          key={item.os}
+          className="flex items-center gap-4 border-b border-gray-200/10 p-2"
+        >
+          <StatusIcon
+            size={30}
+            className={`${config.bg} ${config.text} p-1.5 rounded-sm`}
+          />
+
+          <div className="w-full flex flex-col gap-2">
+            <div className="flex items-center gap-4 w-full">
+              <span className={`${color.textTertiary} flex gap-2`}>
+                <span>OS</span>
+                {item.os}
+              </span>
+
+              <span
+                className={`px-3 py-0.5 ${color.bgIconMarron} ${color.textIconMarron} rounded-xl text-sm`}
               >
-                <h1 className={`font-semibold`}>{item.os} </h1>
-                <span
-                  className={`text-sm w-fit px-2 py-0.5 rounded-xl ${color.bgIconAmarelo} ${color.textIconAmarelo}`}
-                >
-                  {item.tipoServico}
-                </span>
-                <span
-                  className={`text-sm w-fit px-2 py-0.5 rounded-xl ${color.bgIconAzul} ${color.textIconAzul}`}
-                >
-                  {item.tipo}
-                </span>
-                <span className="text-sm">{item.complexo}</span>
-              </div>
-              <div className="grid grid-cols-4">
-                <span>{item.status}</span>
-                <span>{item.atividade}</span>
-                <span>{item.tecnico}</span>
-                <div>
-                  <span className="text-sm">
-                    Finalizado: {formatarData(item.dataConclusao)}
-                  </span>
-                </div>
-              </div>
-            </li>
-          ))}
+                {item.tipoServico}
+              </span>
+
+              <span
+                className={`px-2 py-1 rounded-lg text-sm ${
+                  item.tipo === "Eletrico"
+                    ? `${color.textIconAmarelo} ${color.bgIconAmarelo}`
+                    : `${color.textIconAzulClaro} ${color.bgIconAzulClaro}`
+                }`}
+              >
+                {item.tipo}
+              </span>
+            </div>
+
+            <div className="flex gap-2 items-center text-sm">
+              <span>{item.preStatus}</span>
+              <MoveRight  size={20} className={`${color.textTertiary}`} />
+              <span>{item.status}</span>
+              <span className={color.textTertiary}>
+                {formatarData(item.dataFinalizado || item.dataAbertura) }
+              </span>
+            </div>
+          </div>
+        </li>
+      );
+    })}
+
         </ul>
       </CardContent>
     </Card>
