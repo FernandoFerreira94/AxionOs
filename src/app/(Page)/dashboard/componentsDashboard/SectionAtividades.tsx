@@ -14,7 +14,7 @@ import { InforOrdemServico } from "@/components/layoute/InforOrdemServico";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PropsOrdenservico } from "@/src/app/lib/type";
 
-const listAtividades: PropsOrdenservico[] = [
+ const listAtividades: PropsOrdenservico[] = [
   {
     os: "#AC-1023",
     status: "Aberto",

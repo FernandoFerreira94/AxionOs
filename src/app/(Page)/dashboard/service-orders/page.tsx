@@ -2,6 +2,7 @@ import { HeaderDashboard } from "@/components/layoute/HeadeDashboard";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import CardServiceOrdenFilter from "./componentsServiceOrdes/CardServiceOrdenFilter";
+import { CardOrdemService } from "./componentsServiceOrdes/CardOrdemService";
 
 export default function ServiceOrderm() {
   return (
@@ -16,6 +17,7 @@ export default function ServiceOrderm() {
         }
       />
       <CardServiceOrdenFilter />
+      <CardOrdemService />
     </main>
   );
 }
