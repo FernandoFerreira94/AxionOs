@@ -19,33 +19,33 @@ export function LiSidebar() {
       link: "Dashboard",
     },
     {
-      url: "/service-orders",
+      url: "/dashboard/service-orders",
       icon: <ClipboardList size={18} />,
       link: "Ordem de serviço",
     },
     {
-      url: "/preventive",
+      url: "/dashboard/preventive",
       icon: <CalendarCheck size={18} />,
       link: "Preventivas",
     },
     {
-      url: "/equipment",
+      url: "/dashboard/equipment",
       icon: <Package size={18} />,
       link: "Equipamentos",
     },
     {
-      url: "/employees",
+      url: "/dashboard/employees",
       icon: <Users size={18} />,
       link: "Funcionários",
     },
 
     {
-      url: "/shifts",
+      url: "/dashboard/shifts",
       icon: <ClipboardList size={18} />,
       link: "Plantões",
     },
     {
-      url: "/reports",
+      url: "/dashboard/reports",
       icon: <BarChart3 size={18} />,
       link: "Relatórios",
     },

@@ -1,10 +1,9 @@
 "use client";
 import { color } from "@/src/app/styles/color";
 import { Button } from "../ui/button";
-import { useState } from "react";
-
+import { useAppContext } from "@/src/context/useAppContext";
 export function FilterOrdem() {
-  const [filterType, setFilterType] = useState("all");
+  const { filtroEspecialidade, setFiltroEspecialidade } = useAppContext();
 
   return (
     <section className=" mt-4">
@@ -13,26 +12,28 @@ export function FilterOrdem() {
       </p>
       <div className="flex items-center gap-2 mt-2">
         <Button
-          variant={filterType === "all" ? "default" : "outline"}
-          onClick={() => setFilterType("all")}
+          variant={filtroEspecialidade === "All" ? "default" : "outline"}
+          onClick={() => setFiltroEspecialidade("All")}
         >
           Todos
         </Button>
         <Button
-          variant={filterType === "eletrica" ? "default" : "outline"}
-          onClick={() => setFilterType("eletrica")}
+          variant={filtroEspecialidade === "Eletrico" ? "default" : "outline"}
+          onClick={() => setFiltroEspecialidade("Eletrico")}
         >
-          Elétrica
+          Elétrico
         </Button>
         <Button
-          variant={filterType === "refrigeracao" ? "default" : "outline"}
-          onClick={() => setFilterType("refrigeracao")}
+          variant={
+            filtroEspecialidade === "Refrigeração" ? "default" : "outline"
+          }
+          onClick={() => setFiltroEspecialidade("Refrigeração")}
         >
           Refrigeração
         </Button>
         <Button
-          variant={filterType === "civil" ? "default" : "outline"}
-          onClick={() => setFilterType("civil")}
+          variant={filtroEspecialidade === "Civil" ? "default" : "outline"}
+          onClick={() => setFiltroEspecialidade("Civil")}
         >
           Civil
         </Button>

@@ -1,10 +1,10 @@
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { color } from "@/src/app/styles/color";
 import { statusConfig } from "@/src/app/utils/statusConfig";
 
 export function CardDashboard() {
   return (
-    <section className="w-full grid grid-cols-5 gap-6 mt-8">
+    <section className="w-full grid grid-cols-5 gap-6 mt-4">
       {Object.entries(statusConfig).map(([status, config]) => {
         const Icon = config.icon;
 
@@ -16,13 +16,9 @@ export function CardDashboard() {
                 className={`${config.bg} ${config.text} p-1.5 rounded-sm `}
               />
 
-              <p className={`text-2xl font-semibold ${color.textBranco}`}>
-                0
-              </p>
+              <p className={`text-2xl font-semibold ${color.textBranco}`}>0</p>
 
-              <p className={`text-sm ${color.textTertiary}`}>
-                {status}
-              </p>
+              <p className={`text-sm ${color.textTertiary}`}>{status}</p>
             </CardContent>
           </Card>
         );

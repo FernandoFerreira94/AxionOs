@@ -1,8 +1,8 @@
 import { HeaderDashboard } from "@/components/layoute/HeadeDashboard";
-import { CardDashboard } from "@/components/layoute/CardDashboard";
+import { CardDashboard } from "@/src/app/(Page)/dashboard/componentsDashboard/CardDashboard";
 import { FilterOrdem } from "@/components/layoute/FilterOrdem";
-import SectionPreventivas from "@/components/layoute/SectionPreventivas";
-import SectionAtividades from "@/components/layoute/SectionAtividades";
+import SectionPreventivas from "@/src/app/(Page)/dashboard/componentsDashboard/SectionPreventivas";
+import SectionAtividades from "@/src/app/(Page)/dashboard/componentsDashboard/SectionAtividades";
 
 export default function dashboard() {
   return (
@@ -13,15 +13,15 @@ export default function dashboard() {
       />
       <CardDashboard />
       <FilterOrdem />
-   <section className="mt-6 grid grid-cols-3 gap-6">
-  <div className="col-span-2">
-    <SectionPreventivas />
-  </div>
+      <section className="mt-6 grid grid-cols-5 gap-6 mb-20">
+        <div className="col-span-3">
+          <SectionPreventivas />
+        </div>
 
-  <div className="col-span-1">
-    <SectionAtividades />
-  </div>
-</section>
+        <div className="col-span-2">
+          <SectionAtividades />
+        </div>
+      </section>
     </main>
   );
 }

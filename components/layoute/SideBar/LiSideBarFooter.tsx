@@ -2,7 +2,7 @@ import { color } from "@/src/app/styles/color";
 import { Settings, UserCog, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 export function LiSidebarFooter() {
   const pathname = usePathname();
@@ -18,7 +18,6 @@ export function LiSidebarFooter() {
       link: "Configurações",
     },
   ];
-  console.log(pathname);
   return (
     <>
       <ul className="px-2  flex flex-col gap-1.5 ">
