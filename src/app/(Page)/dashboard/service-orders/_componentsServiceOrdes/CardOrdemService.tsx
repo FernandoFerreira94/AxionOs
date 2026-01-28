@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Eye, Pencil, Trash2 } from "lucide-react";
@@ -21,14 +21,16 @@ import {
 import { PropsOrdenservico } from "@/src/app/lib/type";
 import { color } from "@/src/app/styles/color";
 import { statusConfig } from "@/src/app/utils/statusConfig";
-import clsx from "clsx";
 import { formatarData } from "@/src/app/actions/formatarData";
+import { BadgeTipoServico } from "@/components/layoute/BadgeTipoServico";
+import { BadgeStatus } from "@/components/layoute/BadgeStatus";
+import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
+import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 
 const listAtividades: PropsOrdenservico[] = [
   {
     os: "#AC-1023",
-    status: "Aberto",
-    preStatus: null,
+    status: "Em Execução",
     tipoServico: "Corretiva",
     tipo: "Refrigeração",
     atividade: "Ar-Condicionado",
@@ -44,8 +46,8 @@ const listAtividades: PropsOrdenservico[] = [
   },
   {
     os: "#AC-1245",
-    status: "Aguardando Material",
-    preStatus: "Aberto",
+    status: "Agrd Material",
+
     tipoServico: "Melhoria",
     tipo: "Eletrico",
     atividade: "Troca de luminaria",
@@ -70,8 +72,8 @@ const listAtividades: PropsOrdenservico[] = [
   },
   {
     os: "#EL-45784",
-    status: "Aguardando Fiscalização",
-    preStatus: "Em Execução",
+    status: "Agrd Fiscalização",
+
     tipoServico: "Corretiva",
     tipo: "Eletrico",
     atividade: "Troca de disjuntor geral",
@@ -81,14 +83,14 @@ const listAtividades: PropsOrdenservico[] = [
     descricao: "Foi trocado 2 disjuntores",
     local: "Quadro Refeitorio QE-145",
     complexo: "Shopping",
-    apoio: "Eduardo Perotti",
+    apoio: ["Fabio Carvalho", "Izais Silva"],
     prioridade: "Media",
     materiais: ["Disjuntor 20A  (2 unidades)"],
   },
   {
     os: "#CV-1254",
     status: "Finalizado",
-    preStatus: "Em Execução",
+
     tipoServico: "Corretiva",
     tipo: "Civil",
     atividade: "Troca de pastilhas",
@@ -98,14 +100,14 @@ const listAtividades: PropsOrdenservico[] = [
     descricao: "Foram troca pastilhas encima do letreiro Colinas Eco Primo",
     local: "Estacionamento Primo",
     complexo: "Shopping",
-    apoio: "Izais Silva - Fabio Carvalho",
+    apoio: ["Fabio Carvalho", "Izais Silva"],
     prioridade: "Alta",
     materiais: null,
   },
   {
     os: "#AT-0003",
     status: "Aberto",
-    preStatus: null,
+
     tipoServico: "Acompanhamento",
     tipo: null,
     atividade: "Acompanhamento terceiro",
@@ -127,7 +129,7 @@ export function CardOrdemService() {
       <CardContent>
         <Table>
           <TableHeader>
-            <TableRow className={`hover:bg-transparent ${color.textBranco}`}>
+            <TableRow className={` ${color.textBranco}`}>
               <TableHead className="">OS</TableHead>
               <TableHead className="">Tipo serviço</TableHead>
               <TableHead>Serviço / Local</TableHead>
@@ -144,16 +146,14 @@ export function CardOrdemService() {
               if (!config) return null; // proteção mínima
 
               return (
-                <TableRow key={iten.os} className="group">
+                <TableRow key={iten.os} className="group hover:bg-white/5">
                   <TableCell
                     className={`font-medium ${color.textTertiary} hover:text-white cursor-pointer transition`}
                   >
                     {iten.os}
                   </TableCell>
-                  <TableCell
-                    className={`${iten.tipoServico === "Corretiva" ? `${color.textIconMarron}` : iten.tipoServico === "Melhoria" ? `${color.textIconVerde}` : `${color.textIconAzulClaro}`}`}
-                  >
-                    {iten.tipoServico}
+                  <TableCell>
+                    <BadgeTipoServico tipo={iten.tipoServico} />
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-col gap-1">
@@ -167,44 +167,21 @@ export function CardOrdemService() {
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-col gap-1">
-                      <span
-                        className={`px-2 py-1 rounded-lg text-xs w-fit ${
-                          iten.tipo === "Eletrico"
-                            ? `${color.textIconAmarelo} ${color.bgIconAmarelo}`
-                            : iten.tipo === "Refrigeração"
-                              ? `${color.textIconAzulClaro} ${color.bgIconAzulClaro}`
-                              : iten.tipo === "Civil"
-                                ? `${color.textIconMarron} ${color.bgIconMarron}`
-                                : ``
-                        }`}
-                      >
-                        {iten.tipo ? iten.tipo : "N/A"}
-                      </span>
+                      <BadgeFuncao funcao={iten.tipo} />
                       <span className="text-xs text-slate-500 italic">
                         {iten.tecnico}
                       </span>
                     </div>
                   </TableCell>
 
-                  <TableCell>
-                    <div className="flex flex-col gap-1">
-                      <Badge
-                        className={`px-3 py-1 rounded-full text-xs ${config.text} ${config.bg}`}
-                      >
-                        {iten.status}
-                      </Badge>
-                      <span className="text-xs  italic">
-                        {formatarData(iten.dataAbertura)}
-                      </span>
-                    </div>
+                  <TableCell className="flex flex-col gap-1 ">
+                    <BadgeStatus status={iten.status} />
+                    <span className="text-xs  italic ml-2">
+                      {formatarData(iten.dataAbertura)}
+                    </span>
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`w-4 h-4 rounded-full ${iten.prioridade === "Alta" ? "bg-[#D16163]" : iten.prioridade === "Media" ? "bg-[#D1AC18]" : "bg-[#38A566]"} `}
-                      ></div>
-                      <span>{iten.prioridade}</span>
-                    </div>
+                    <BadgePrioridade prioridade={iten.prioridade} />
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
@@ -219,7 +196,8 @@ export function CardOrdemService() {
                       >
                         <DropdownMenuLabel>Ações</DropdownMenuLabel>
                         <DropdownMenuItem className="gap-2 cursor-pointer">
-                          <Eye size={14} /> Visualizar Detalhes
+                          <Eye size={14} />
+                          Visualizar detalhes
                         </DropdownMenuItem>
                         <DropdownMenuItem className="gap-2 cursor-pointer ">
                           <Pencil size={14} /> Editar OS

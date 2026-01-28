@@ -16,8 +16,8 @@ export type StatusProps =
   | "All"
   | "Aberto"
   | "Em Execução"
-  | "Aguardando Material"
-  | "Aguardando Fiscalização"
+  | "Agrd Material"
+  | "Agrd Fiscalização"
   | "Finalizado"
   | null;
 
@@ -28,11 +28,16 @@ export type Typeservice =
   | "Acompanhamento"
   | null;
 
+export interface ApoioTencino {
+  id: string;
+  name: string;
+}
+
+type TipoServico = "Corretiva" | "Melhoria" | "Acompanhamento";
 export interface PropsOrdenservico {
   os: string;
   status: keyof typeof statusConfig;
-  preStatus?: keyof typeof statusConfig | null;
-  tipoServico: "Corretiva" | "Melhoria" | "Acompanhamento";
+  tipoServico: TipoServico;
   tipo: Especialidade;
   atividade: string;
   tecnico: string;
@@ -41,7 +46,9 @@ export interface PropsOrdenservico {
   descricao: string;
   local: string;
   complexo: string;
-  apoio: string | null;
+  apoio?: (string | ApoioTencino)[] | null;
   prioridade: "Alta" | "Media" | "Baixa";
   materiais?: (string | MaterialDetail)[] | null;
 }
+
+export type FilterPreventivas = "All" | "vencidas" | "finalizadas";

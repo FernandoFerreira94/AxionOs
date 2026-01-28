@@ -19,6 +19,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
+import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 
 interface Preventiva {
   equipamento: string;
@@ -52,7 +54,7 @@ const listPreventivas: Preventiva[] = [
   },
 ];
 
-export default function SectionPreventivas() {
+export default function SectionDashboardPreventivas() {
   return (
     <ScrollArea className="h-150 w-full ">
       <Card className="border-gray-400/40 ">
@@ -82,20 +84,12 @@ export default function SectionPreventivas() {
             </TableHeader>
             <TableBody>
               {listPreventivas.map((iten) => (
-                <TableRow key={iten.equipamento}>
+                <TableRow key={iten.equipamento} className="hover:bg-white/5">
                   <TableCell className="font-medium">
                     {iten.equipamento} - {iten.local}
                   </TableCell>
                   <TableCell>
-                    <span
-                      className={`px-2 py-1 rounded-lg  ${
-                        iten.tipo === "Eletrico"
-                          ? `${color.textIconAmarelo} ${color.bgIconAmarelo}`
-                          : `${color.textIconAzulClaro} ${color.bgIconAzulClaro}`
-                      }`}
-                    >
-                      {iten.tipo}
-                    </span>
+                    <BadgeFuncao funcao={iten.tipo} />
                   </TableCell>
                   <TableCell>{formatarData(iten.dataExecucao)}</TableCell>
                   <TableCell
@@ -105,12 +99,7 @@ export default function SectionPreventivas() {
                     dias
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`w-4 h-4 rounded-full ${iten.prioridade === "Alta" ? "bg-[#D16163]" : iten.prioridade === "Media" ? "bg-[#D1AC18]" : "bg-[#38A566]"} `}
-                      ></div>
-                      <span>{iten.prioridade}</span>
-                    </div>
+                    <BadgePrioridade prioridade={iten.prioridade} />
                   </TableCell>
                 </TableRow>
               ))}

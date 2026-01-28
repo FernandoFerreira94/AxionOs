@@ -12,6 +12,8 @@ export const color = {
   textIconMarron: "text-[#CF7A36]",
   bgIconMarron: "bg-[#282225]",
   textIconAzul: "text-[#5694E2]",
+  bgIconAzul2: "bg-[#5694E2]/20 ",
+  textconAzul2: "text-[#5694E2]/50 ",
   bgIconAzul: "bg-[#15233C]",
   textIconAmarelo: "text-[#D1AC18]",
   bgIconAmarelo: "bg-[#272824]",

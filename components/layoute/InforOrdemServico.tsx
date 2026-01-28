@@ -25,6 +25,8 @@ import { statusConfig } from "@/src/app/utils/statusConfig";
 import { formatarData } from "@/src/app/actions/formatarData";
 import { ItemInfo } from "./InfoItem";
 import { ScrollArea } from "../ui/scroll-area";
+import { BadgeFuncao } from "./BadgeFuncao";
+import { BadgeStatus } from "./BadgeStatus";
 
 interface Props {
   data: PropsOrdenservico;
@@ -46,28 +48,13 @@ export function InforOrdemServico({ data }: Props) {
           <div className="space-y-1">
             <DialogTitle className="text-lg font-bold flex items-center gap-2">
               <span>{data.os}</span>
-              <Badge
-                variant="outline"
-                className={`px-2 py-1 rounded-xl text-xs border-none  ${
-                  data.tipo === "Eletrico"
-                    ? `${color.textIconAmarelo} ${color.bgIconAmarelo}`
-                    : data.tipo === "Refrigeração"
-                      ? `${color.textIconAzulClaro} ${color.bgIconAzulClaro}`
-                      : `${color.textIconVermelho} ${color.bgIconVermelho}`
-                }`}
-              >
-                {data.tipo}
-              </Badge>
+              <BadgeFuncao funcao={data.tipo} />
             </DialogTitle>
             <p className="text-sm text-slate-500">{data.atividade}</p>
           </div>
 
           <div className="flex flex-col items-end gap-2">
-            <Badge
-              className={`px-3 py-1 rounded-full text-xs ${statusUI.text} ${statusUI.bg}`}
-            >
-              {data.status}
-            </Badge>
+            <BadgeStatus status={data.status} />
             <div className="flex items-center gap-1 text-xs font-medium text-slate-500">
               <AlertTriangle
                 className={clsx(
@@ -139,10 +126,10 @@ export function InforOrdemServico({ data }: Props) {
                   value={data.tecnico}
                   icon={<User className="w-4 h-4" />}
                 />
-                {data.apoio && (
+                {data.apoio && data.apoio.length > 0 && (
                   <ItemInfo
                     label="Apoio"
-                    value={data.apoio}
+                    value={data.apoio.join(" / ")}
                     icon={<Users className="w-4 h-4" />}
                   />
                 )}

@@ -1,10 +1,4 @@
-import {
-  ClipboardList,
-  Wrench,
-  PackageX,
-  Info,
-  Check,
-} from "lucide-react";
+import { ClipboardList, Wrench, PackageX, Info, Check } from "lucide-react";
 import { color } from "@/src/app/styles/color";
 
 export const statusConfig = {
@@ -20,13 +14,13 @@ export const statusConfig = {
     bg: color.bgIconAzul,
   },
 
-  "Aguardando Material": {
+  "Agrd Material": {
     icon: PackageX,
     text: color.textIconMarron,
     bg: color.bgIconMarron,
   },
 
-  "Aguardando Fiscalização": {
+  "Agrd Fiscalização": {
     icon: Info,
     text: color.textIconLilas,
     bg: color.bgIconLilas,
