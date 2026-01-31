@@ -1,4 +1,4 @@
-import { Check, ClipboardList } from "lucide-react";
+import { Check, ClipboardList, Info, PackageX, Wrench } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils"; // Utilitário padrão do Shadcn para classes
 import { color } from "@/src/app/styles/color";
@@ -6,8 +6,8 @@ import { color } from "@/src/app/styles/color";
 type StatusType =
   | "Aberto"
   | "Em Execução"
-  | "Agrd Material"
-  | "Agrd Fiscalização"
+  | "Material"
+  | "Fiscalização"
   | "Finalizado";
 
 type BadgeStatusProps = {
@@ -26,7 +26,7 @@ export function BadgeStatus({ status }: BadgeStatusProps) {
     },
     "Em Execução": {
       color: color.textIconAzul,
-      icon: null,
+      icon: Wrench,
       dot: (
         <span className="relative flex h-2 w-2 mr-1">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -34,14 +34,14 @@ export function BadgeStatus({ status }: BadgeStatusProps) {
         </span>
       ),
     },
-    "Agrd Material": {
+    Material: {
       color: color.textIconMarron,
-      icon: null,
+      icon: <PackageX size={14} />,
       dot: null,
     },
-    "Agrd Fiscalização": {
+    Fiscalização: {
       color: color.textIconLilas,
-      icon: null,
+      icon: <Info size={14} />,
       dot: null,
     },
     Finalizado: {

@@ -25,7 +25,7 @@ import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 interface Preventiva {
   equipamento: string;
   local: string;
-  tipo: "Eletrico" | "Refrigeração";
+  tipo: "Eletrica" | "Refrigeração";
   dataExecucao: Date;
   prioridade: "Alta" | "Media" | "Baixa";
 }
@@ -34,7 +34,7 @@ const listPreventivas: Preventiva[] = [
   {
     equipamento: "Gerador Shopping",
     local: "Doca",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     dataExecucao: new Date(2026, 0, 19),
     prioridade: "Alta",
   },
@@ -48,7 +48,7 @@ const listPreventivas: Preventiva[] = [
   {
     equipamento: "Painel eletrico",
     local: "Almoxerifado",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     dataExecucao: new Date(2026, 0, 22),
     prioridade: "Baixa",
   },
@@ -74,7 +74,7 @@ export default function SectionDashboardPreventivas() {
           <Table>
             <TableCaption>Tabela de preventivas</TableCaption>
             <TableHeader>
-              <TableRow className={`${color.textTertiary}`}>
+              <TableRow className={`${color.textBranco}`}>
                 <TableHead>Equipamento</TableHead>
                 <TableHead>Departamento</TableHead>
                 <TableHead>Data</TableHead>
@@ -84,14 +84,19 @@ export default function SectionDashboardPreventivas() {
             </TableHeader>
             <TableBody>
               {listPreventivas.map((iten) => (
-                <TableRow key={iten.equipamento} className="hover:bg-white/5">
-                  <TableCell className="font-medium">
+                <TableRow
+                  key={iten.equipamento}
+                  className={`font-medium  ${color.textTertiary} hover:${color.textBranco} cursor-pointer  hover:bg-white/5`}
+                >
+                  <TableCell className={`font-medium  `}>
                     {iten.equipamento} - {iten.local}
                   </TableCell>
                   <TableCell>
                     <BadgeFuncao funcao={iten.tipo} />
                   </TableCell>
-                  <TableCell>{formatarData(iten.dataExecucao)}</TableCell>
+                  <TableCell className={`${color.textBranco}`}>
+                    {formatarData(iten.dataExecucao)}
+                  </TableCell>
                   <TableCell
                     className={`flex items-center gap-2 ${calcularDiasAtraso(iten.dataExecucao) <= 2 ? color.textIconVerde : calcularDiasAtraso(iten.dataExecucao) <= 5 ? color.textIconAmarelo : color.textIconVermelho} `}
                   >

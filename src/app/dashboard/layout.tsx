@@ -1,6 +1,6 @@
 "use client";
 import { SideBar } from "@/components/layoute/SideBar/SideBar";
-import { color } from "../../styles/color";
+import { color } from "../styles/color";
 
 export default function DashboardLayout({
   children,

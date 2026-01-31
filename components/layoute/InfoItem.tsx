@@ -6,7 +6,7 @@ export function ItemInfo({
   icon,
 }: {
   label: string;
-  value: string;
+  value: string | null;
   icon: React.ReactNode;
 }) {
   return (

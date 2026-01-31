@@ -1,13 +1,14 @@
-"use client";
-
 import { color } from "@/src/app/styles/color";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   User,
-  MoreVertical,
   CheckCircle2,
   CalendarRange,
   CalendarClock,
+  MoreHorizontal,
+  Eye,
+  Pencil,
+  Trash2,
 } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
 import {
@@ -27,14 +28,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { getStatusAgendamento } from "../utils/getSattusAgendamento";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
+
 interface Preventiva {
   id: string; // Adicionado ID
   equipamento: string;
   local: string;
-  tipo: "Eletrico" | "Refrigeração";
+  tipo: "Eletrica" | "Refrigeração";
   dataExecucao: Date;
   dataFinalizado?: Date | null;
   prioridade: "Alta" | "Media" | "Baixa";
@@ -47,7 +51,7 @@ const listPreventivas: Preventiva[] = [
     id: "EL-102",
     equipamento: "Gerador Shopping",
     local: "Doca",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     dataExecucao: new Date(2026, 0, 30),
     dataFinalizado: new Date(2026, 1, 3),
     prioridade: "Alta",
@@ -69,7 +73,7 @@ const listPreventivas: Preventiva[] = [
     id: "El-003",
     equipamento: "Quadro Energia - QE-145",
     local: "Sala Comercial",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     dataExecucao: new Date(2026, 2, 21),
     dataFinalizado: null,
     prioridade: "Media",
@@ -78,7 +82,7 @@ const listPreventivas: Preventiva[] = [
   },
 ];
 
-export default function SectionPreventivas() {
+export default function TabelaPreventiva() {
   return (
     <div className={`flex-1 min-h-0 w-full  my-4 ${color.bgMain}`}>
       <ScrollArea
@@ -97,10 +101,10 @@ export default function SectionPreventivas() {
           <CardContent>
             <Table>
               <TableHeader>
-                <TableRow className="border-gray-400/20 hover:bg-transparent">
-                  <TableHead className="w-[100px]">ID</TableHead>
+                <TableRow className="border-gray-400/20 hover:bg-transparent  }">
+                  <TableHead>ID</TableHead>
                   <TableHead>Equipamento / Local</TableHead>
-                  <TableHead>Técnico</TableHead>
+                  <TableHead>Categoria / Técnico</TableHead>
                   <TableHead>Agendamento</TableHead>
                   <TableHead>Checklist</TableHead>
                   <TableHead>Prioridade</TableHead>
@@ -115,9 +119,9 @@ export default function SectionPreventivas() {
                   return (
                     <TableRow
                       key={item.id}
-                      className="border-gray-400/10 hover:bg-white/5"
+                      className={`border-gray-400/10 hover:bg-white/5 ${color.textTertiary} hover:${color.textBranco} cursor-pointer`}
                     >
-                      <TableCell className="font-mono text-xs text-slate-400">
+                      <TableCell className="font-mono text-sm">
                         {item.id}
                       </TableCell>
 
@@ -190,7 +194,7 @@ export default function SectionPreventivas() {
                         </div>
                       </TableCell>
 
-                      <TableCell>
+                      <TableCell className="pl-6">
                         {/* Prioridade compacta */}
                         <BadgePrioridade prioridade={item.prioridade} />
                       </TableCell>
@@ -222,27 +226,25 @@ export default function SectionPreventivas() {
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="hover:bg-white/10"
-                            >
-                              <MoreVertical size={16} />
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                              <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent
                             align="end"
-                            className="bg-[#1e1e1e] border-gray-700 text-white"
+                            className={`${color.bgCard} ${color.textBranco} `}
                           >
+                            <DropdownMenuLabel>Ações</DropdownMenuLabel>
                             <DropdownMenuItem className="gap-2 cursor-pointer">
-                              <CheckCircle2
-                                size={14}
-                                className="text-green-500"
-                              />{" "}
-                              Finalizar
+                              <Eye size={14} />
+                              Visualizar detalhes
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="gap-2 cursor-pointer">
-                              Visualizar Checklist
+                            <DropdownMenuItem className="gap-2 cursor-pointer ">
+                              <Pencil size={14} /> Editar Preventiva
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem className="gap-2 cursor-pointer ">
+                              <Trash2 size={14} /> Excluir
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

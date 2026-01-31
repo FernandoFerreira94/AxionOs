@@ -11,7 +11,7 @@ import { TrendingUp, User } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
 import { InforOrdemServico } from "@/components/layoute/InforOrdemServico";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { PropsOrdenservico } from "@/src/app/lib/type";
+import { OrdenservicoProps } from "@/src/app/lib/type";
 import { BadgeTipoServico } from "@/components/layoute/BadgeTipoServico";
 import { BadgeStatus } from "@/components/layoute/BadgeStatus";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/table";
 import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
 
-const listAtividades: PropsOrdenservico[] = [
+const listAtividades: OrdenservicoProps[] = [
   {
     os: "#AC-1023",
     status: "Aberto",
@@ -45,10 +45,10 @@ const listAtividades: PropsOrdenservico[] = [
   },
   {
     os: "#AC-1245",
-    status: "Agrd Material",
+    status: "Material",
 
     tipoServico: "Melhoria",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     atividade: "Troca de luminaria",
     tecnico: "Fernando Pedro - M5",
     dataAbertura: new Date(2026, 0, 23),
@@ -71,10 +71,10 @@ const listAtividades: PropsOrdenservico[] = [
   },
   {
     os: "#EL-45784",
-    status: "Agrd Fiscalização",
+    status: "Fiscalização",
 
     tipoServico: "Corretiva",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     atividade: "Troca de disjuntor geral",
     tecnico: "Fernando Pedro - M5",
     dataAbertura: new Date(2026, 0, 23),
@@ -125,7 +125,9 @@ export default function SectionDashboardAtividades() {
           <Table>
             {/* 1. CORREÇÃO: Usar TableHeader e TableHead corretamente */}
             <TableHeader>
-              <TableRow className="hover:bg-transparent border-gray-400/20">
+              <TableRow
+                className={`hover:bg-transparent border-gray-400/20 ${color.textBranco}`}
+              >
                 <TableHead>OS</TableHead>
                 <TableHead>Tipo / Status</TableHead>
                 <TableHead>Categoria / Técnico</TableHead>
@@ -138,10 +140,10 @@ export default function SectionDashboardAtividades() {
                 return (
                   <TableRow
                     key={item.os}
-                    className="border-gray-400/10 hover:bg-white/5"
+                    className={`border-gray-400/10 hover:bg-white/5  ${color.textTertiary} hover:${color.textBranco} cursor-pointer group`}
                   >
                     {/* Coluna OS */}
-                    <TableCell className="font-mono text-sm text-slate-400">
+                    <TableCell className="font-mono text-sm">
                       <InforOrdemServico data={item} />
                     </TableCell>
 

@@ -6,6 +6,8 @@ import {
   BarChart3,
   Users,
   Package,
+  Wrench,
+  Clock,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,8 +32,13 @@ export function LiSidebar() {
     },
     {
       url: "/dashboard/equipment",
-      icon: <Package size={18} />,
+      icon: <Wrench size={18} />,
       link: "Equipamentos",
+    },
+    {
+      url: "/dashboard/materials",
+      icon: <Package size={18} />,
+      link: "Materiais",
     },
     {
       url: "/dashboard/employees",
@@ -41,7 +48,7 @@ export function LiSidebar() {
 
     {
       url: "/dashboard/shifts",
-      icon: <ClipboardList size={18} />,
+      icon: <Clock size={18} />,
       link: "Plantões",
     },
     {

@@ -11,14 +11,15 @@ export function CardDashboard() {
         return (
           <Card key={status} className={`${config.text}`}>
             <CardContent className="flex flex-col gap-2 ">
-              <Icon
-                size={30}
-                className={`${config.bg} ${config.text} p-1.5 rounded-sm `}
-              />
+              <div className="flex items-center gap-2">
+                <Icon
+                  size={30}
+                  className={`${config.bg} ${config.text} p-1.5 rounded-sm `}
+                />
+                <p className={`text-sm ${color.textTertiary}`}>{status}</p>
+              </div>
 
               <p className={`text-2xl font-semibold ${color.textBranco}`}>0</p>
-
-              <p className={`text-sm ${color.textTertiary}`}>{status}</p>
             </CardContent>
           </Card>
         );

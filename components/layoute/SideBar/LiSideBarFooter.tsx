@@ -3,6 +3,7 @@ import { Settings, UserCog, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
 export function LiSidebarFooter() {
   const pathname = usePathname();
@@ -34,6 +35,7 @@ export function LiSidebarFooter() {
         ))}
         <Button
           className={`${color.textIconVermelho} bg-[#271D2A] border hover:bg-[#3A2B44] mt-1 `}
+          onClick={() => redirect("/")}
         >
           <LogOut size={18} /> Sair
         </Button>

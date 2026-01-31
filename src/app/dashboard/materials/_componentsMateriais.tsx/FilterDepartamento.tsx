@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Label } from "@radix-ui/react-label";
 import {
   Combobox,
@@ -8,37 +7,42 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "@/components/ui/combobox";
-import { Especialidade } from "@/src/app/lib/type";
+import { DepartamentoProps } from "@/src/app/lib/type";
 
-const statusOptions: Especialidade[] = [
-  "All",
-  "Eletrico",
-  "Civil",
-  "Refrigeração",
+const statusOptions: DepartamentoProps[] = [
+  "Shopping Colinas",
+  "Green Tower",
+  "Empreedimento",
 ] as const;
 
-export function FilterCategoria() {
-  const [categoriaFilter, setCategoriaFilter] = useState<Especialidade>("All");
-  const handleValueChange = (value: Especialidade | null) => {
-    if (value === null) {
-      setCategoriaFilter("All"); // Se vier nulo, volta pro padrão "All"
-    } else {
-      setCategoriaFilter(value);
+interface FilterDepartamentoProps {
+  value: DepartamentoProps;
+  onChange: (value: DepartamentoProps) => void;
+}
+
+export function FilterDepartamento({
+  value,
+  onChange,
+}: FilterDepartamentoProps) {
+  const handleValueChange = (newVal: DepartamentoProps | null) => {
+    if (newVal) {
+      onChange(newVal);
     }
   };
-  console.log(categoriaFilter);
+
   return (
     <div className="flex flex-col gap-1.5">
-      <Label className="text-sm font-medium">Categoria</Label>
+      <Label className="text-sm font-medium">Departamento</Label>
 
       {/* 3. Passar o valor e a função de mudança para o Combobox */}
       <Combobox
-        value={categoriaFilter}
+        value={value}
         onValueChange={handleValueChange}
         items={statusOptions}
       >
         <ComboboxInput
           placeholder="Select status..."
+          readOnly
           // O valor exibido agora é controlado pelo estado
         />
         <ComboboxContent>

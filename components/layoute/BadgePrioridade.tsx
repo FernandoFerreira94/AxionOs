@@ -1,11 +1,8 @@
 import { color } from "@/src/app/styles/color";
 import { Badge } from "../ui/badge";
+import { PrioridadeProps } from "@/src/app/lib/type";
 
-type BadgePrioridadeProps = {
-  prioridade: "Alta" | "Media" | "Baixa";
-};
-
-export function BadgePrioridade({ prioridade }: BadgePrioridadeProps) {
+export function BadgePrioridade({ prioridade }: PrioridadeProps) {
   return (
     <Badge
       variant="outline"

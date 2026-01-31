@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { color } from "@/src/app/styles/color";
-import { Preventivas } from "@/src/app/(Page)/dashboard/preventive/utils/cardInfoPreventivas";
+import { Preventivas } from "../utils/cardInfoPreventivas";
 
 export function CardPreventivas() {
   return (
@@ -13,11 +13,13 @@ export function CardPreventivas() {
                 size={30}
                 className={` p-1.5 rounded-sm ${item.color} ${item.bg}`}
               />
-              <span className={`${color.textSecondary}`}>{item.titulo}</span>
+              <span className={`${color.textSecondary} text-sm`}>
+                {item.titulo}
+              </span>
             </div>
 
             <p
-              className={`text-2xl font-semibold ${item.color} ${item.titulo === "Preventivas programadas" && color.textBranco}`}
+              className={`text-lg font-semibold ${item.color} ${item.titulo === "Preventivas programadas" && color.textBranco}`}
             >
               {item.qtd}
             </p>

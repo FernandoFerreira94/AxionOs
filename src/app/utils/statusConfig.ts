@@ -14,13 +14,13 @@ export const statusConfig = {
     bg: color.bgIconAzul,
   },
 
-  "Agrd Material": {
+  Material: {
     icon: PackageX,
     text: color.textIconMarron,
     bg: color.bgIconMarron,
   },
 
-  "Agrd Fiscalização": {
+  Fiscalização: {
     icon: Info,
     text: color.textIconLilas,
     bg: color.bgIconLilas,

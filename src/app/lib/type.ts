@@ -5,40 +5,58 @@ export type MaterialDetail = {
   qtd: number;
 };
 
-export type Especialidade =
+export type PrioridadeProps = {
+  prioridade: "Alta" | "Media" | "Baixa";
+};
+
+export type CategoriaProps =
   | "Refrigeração"
-  | "Eletrico"
+  | "Eletrica"
   | "Civil"
-  | "All"
+  | "Hidraulica"
+  | "Todos"
   | null;
 
 export type StatusProps =
-  | "All"
+  | "Todos"
   | "Aberto"
   | "Em Execução"
-  | "Agrd Material"
-  | "Agrd Fiscalização"
+  | "Material"
+  | "Fiscalização"
   | "Finalizado"
   | null;
 
-export type Typeservice =
-  | "All"
+export type TipoServicoProps =
+  | "Todos"
   | "Corretiva"
   | "Melhoria"
   | "Acompanhamento"
   | null;
 
-export interface ApoioTencino {
+export type FilterEquipamentosProps =
+  | "Todos"
+  | "Eletrica"
+  | "Refrigeração"
+  | "Ativo"
+  | "Desativado";
+
+export interface ApoioTencinoProps {
   id: string;
   name: string;
 }
 
+export type DepartamentoProps =
+  | "Shopping Colinas"
+  | "Green Tower"
+  | "Empreedimento";
+
 type TipoServico = "Corretiva" | "Melhoria" | "Acompanhamento";
-export interface PropsOrdenservico {
+
+export interface OrdenservicoProps {
   os: string;
   status: keyof typeof statusConfig;
   tipoServico: TipoServico;
-  tipo: Especialidade;
+  tipo: CategoriaProps;
   atividade: string;
   tecnico: string;
   dataAbertura: Date;
@@ -46,9 +64,9 @@ export interface PropsOrdenservico {
   descricao: string;
   local: string;
   complexo: string;
-  apoio?: (string | ApoioTencino)[] | null;
+  apoio?: (string | ApoioTencinoProps)[] | null;
   prioridade: "Alta" | "Media" | "Baixa";
   materiais?: (string | MaterialDetail)[] | null;
 }
 
-export type FilterPreventivas = "All" | "vencidas" | "finalizadas";
+export type FilterPreventivasProps = "Todos" | "Vencidas" | "Finalizadas";

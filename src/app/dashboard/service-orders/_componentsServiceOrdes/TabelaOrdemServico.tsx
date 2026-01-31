@@ -6,10 +6,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, Eye, Pencil, Trash2 } from "lucide-react";
+import {
+  MoreHorizontal,
+  Eye,
+  Pencil,
+  Trash2,
+  CalendarRange,
+  ClipboardList,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { PropsOrdenservico } from "@/src/app/lib/type";
+import { OrdenservicoProps } from "@/src/app/lib/type";
 import { color } from "@/src/app/styles/color";
 import { statusConfig } from "@/src/app/utils/statusConfig";
 import { formatarData } from "@/src/app/actions/formatarData";
@@ -27,7 +33,7 @@ import { BadgeStatus } from "@/components/layoute/BadgeStatus";
 import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 
-const listAtividades: PropsOrdenservico[] = [
+const listAtividades: OrdenservicoProps[] = [
   {
     os: "#AC-1023",
     status: "Em Execução",
@@ -46,10 +52,10 @@ const listAtividades: PropsOrdenservico[] = [
   },
   {
     os: "#AC-1245",
-    status: "Agrd Material",
+    status: "Material",
 
     tipoServico: "Melhoria",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     atividade: "Troca de luminaria",
     tecnico: "Fernando Pedro",
     dataAbertura: new Date(2026, 0, 23),
@@ -72,10 +78,10 @@ const listAtividades: PropsOrdenservico[] = [
   },
   {
     os: "#EL-45784",
-    status: "Agrd Fiscalização",
+    status: "Fiscalização",
 
     tipoServico: "Corretiva",
-    tipo: "Eletrico",
+    tipo: "Eletrica",
     atividade: "Troca de disjuntor geral",
     tecnico: "Fernando Pedro",
     dataAbertura: new Date(2026, 0, 23),
@@ -123,9 +129,18 @@ const listAtividades: PropsOrdenservico[] = [
   },
 ];
 
-export function CardOrdemService() {
+export function TabelaOrdemServico() {
   return (
     <Card className="border-gray-400/40 mt-6">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <ClipboardList
+            size={30}
+            className={`${color.textIconAmarelo} ${color.bgIconAmarelo} p-1.5 rounded-sm`}
+          />
+          <h2 className={`${color.textBranco}`}>Lista de Ordens de Servico</h2>
+        </CardTitle>
+      </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
@@ -146,16 +161,15 @@ export function CardOrdemService() {
               if (!config) return null; // proteção mínima
 
               return (
-                <TableRow key={iten.os} className="group hover:bg-white/5">
-                  <TableCell
-                    className={`font-medium ${color.textTertiary} hover:text-white cursor-pointer transition`}
-                  >
-                    {iten.os}
-                  </TableCell>
+                <TableRow
+                  key={iten.os}
+                  className={`group hover:bg-white/5  ${color.textTertiary} hover:${color.textBranco} cursor-pointer`}
+                >
+                  <TableCell className={`font-medium `}>{iten.os}</TableCell>
                   <TableCell>
                     <BadgeTipoServico tipo={iten.tipoServico} />
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-white">
                     <div className="flex flex-col gap-1">
                       <span className="truncate font-medium text-sm">
                         {iten.atividade}
@@ -176,7 +190,7 @@ export function CardOrdemService() {
 
                   <TableCell className="flex flex-col gap-1 ">
                     <BadgeStatus status={iten.status} />
-                    <span className="text-xs  italic ml-2">
+                    <span className="text-xs  italic ml-2 text-white">
                       {formatarData(iten.dataAbertura)}
                     </span>
                   </TableCell>

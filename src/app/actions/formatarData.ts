@@ -1,3 +1,4 @@
-export function formatarData(data: Date) {
+export function formatarData(data: Date | null) {
+  if (!data) return null;
   return data.toLocaleDateString("pt-BR");
 }
