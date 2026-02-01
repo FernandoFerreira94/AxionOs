@@ -47,7 +47,7 @@ const infoMaterial = [
 
   // REFRIGERAÇÃO
   {
-    codigo: "AR-4578",
+    codigo: "AR-45782",
     descricao: "Gás Refrigerante R22 - Cilindro 1kg",
     despartamento: "Shopping Colinas",
     marca: "Chemours",
@@ -76,7 +76,7 @@ const infoMaterial = [
 
   // HIDRÁULICA
   {
-    codigo: "HL-4578",
+    codigo: "HL-2",
     descricao: "Registro de Esfera 50mm (PVC)",
     despartamento: "Shopping Colinas",
     marca: "Tigre",
@@ -132,7 +132,7 @@ const infoMaterial = [
     unidade: "un",
   },
   {
-    codigo: "EL-4578",
+    codigo: "EL-222132",
     descricao: "Fita LED Natalina Branco Quente",
     despartamento: "Shopping Colinas",
     marca: null,

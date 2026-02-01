@@ -5,21 +5,21 @@ import { Users, UserCheck, UserX } from "lucide-react";
 const infoFuncionarios = [
   {
     titulo: "Total",
-    qtd: 23,
+    qtd: 5,
     icon: Users,
     color: color.textIconAzul,
     bg: color.bgIconAzul,
   },
   {
     titulo: "Ativos",
-    qtd: 21,
+    qtd: 4,
     icon: UserCheck,
     color: color.textIconVerde,
     bg: color.bgIconVerde,
   },
   {
     titulo: "Inativos",
-    qtd: 2,
+    qtd: 1,
     icon: UserX,
     color: "text-neutral-400",
     bg: "bg-neutral-700/40",

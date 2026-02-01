@@ -35,7 +35,9 @@ export default function Employees() {
 
       <CardFuncionarios />
       <CardFilterFuncionarios filters={filters} setFilters={setFilters} />
-      <TabelaFuncionarios />
+      <section className="mt-6 grid grid-cols-1 h-full gap-4 mb-20">
+        <TabelaFuncionarios />
+      </section>
     </main>
   );
 }

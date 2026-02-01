@@ -39,7 +39,7 @@ export default function Login() {
                   Axion OS
                 </h1>
                 <span className={`text-base ${color.textTertiary} italic`}>
-                  Sistema de manutenção
+                  Sistema de manutenção e preventivas
                 </span>
               </div>
             </div>

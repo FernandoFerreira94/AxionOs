@@ -24,6 +24,8 @@ export const color = {
   textIconLilas: "text-[#AB77E1]",
   bgIconLilas: "bg-[#201F3C]",
   textIconAzulClaro: "text-[#20C5E0]",
+  bgIconCinza: "bg-neutral-700/40",
+  textIconCinza: "text-neutral-400",
   bgIconAzulClaro: "bg-[#102939]",
   textBranco: "text-[#ffffff]",
   textBrancoHover: "hover:text-[#f3f4f6]",
