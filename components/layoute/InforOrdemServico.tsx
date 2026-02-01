@@ -18,7 +18,7 @@ import {
   Users,
   Package,
 } from "lucide-react";
-import type { PropsOrdenservico } from "@/src/app/lib/type";
+import type { OrdenservicoProps } from "@/src/app/lib/type";
 import { color } from "@/src/app/styles/color";
 import { clsx } from "clsx";
 import { statusConfig } from "@/src/app/utils/statusConfig";
@@ -29,7 +29,7 @@ import { BadgeFuncao } from "./BadgeFuncao";
 import { BadgeStatus } from "./BadgeStatus";
 
 interface Props {
-  data: PropsOrdenservico;
+  data: OrdenservicoProps;
 }
 
 export function InforOrdemServico({ data }: Props) {
@@ -48,7 +48,7 @@ export function InforOrdemServico({ data }: Props) {
           <div className="space-y-1">
             <DialogTitle className="text-lg font-bold flex items-center gap-2">
               <span>{data.os}</span>
-              <BadgeFuncao funcao={data.tipo} />
+              <BadgeFuncao funcao={data.tipo as string} />
             </DialogTitle>
             <p className="text-sm text-slate-500">{data.atividade}</p>
           </div>
