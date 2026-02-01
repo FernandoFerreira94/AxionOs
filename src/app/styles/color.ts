@@ -1,7 +1,7 @@
 export const color = {
   bgLogo: "bg-[#3477F2]",
   textLogo: "text-[#3477F2]",
-  bgMain: "bg-[#030712]",
+  bgMain: "bg-[#030712] ",
   bgCard: "bg-[#111827]",
   bgButton: "bg-[#3477F2]",
   bgButtonHover: "transition duration-300 hover:bg-[#2C63C9]",
