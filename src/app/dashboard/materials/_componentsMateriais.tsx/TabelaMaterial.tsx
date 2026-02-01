@@ -169,7 +169,7 @@ export function TabelaMaterial() {
           <Table>
             <TableHeader className="sticky top-0 z-10">
               <TableRow className="border-gray-400/20 hover:bg-transparent">
-                <TableHead className="w-[100px]">Ref</TableHead>
+                <TableHead className="">Ref</TableHead>
                 <TableHead>Material / Marca</TableHead>
                 <TableHead>Dep / Cat</TableHead>
                 <TableHead className="text-right">Estoque</TableHead>

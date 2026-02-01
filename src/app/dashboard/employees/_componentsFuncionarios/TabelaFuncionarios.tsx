@@ -37,13 +37,13 @@ import {
   UserMinus,
   Trash2,
   AlertTriangle,
-  Calendar1,
-  Calendar,
   CalendarArrowUp,
   CalendarArrowDown,
 } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getIniciais } from "@/src/app/actions/getIniciaisName";
+import { calcularTempoPermanencia } from "@/src/app/actions/calculoTempoServico";
 
 interface Funcionario {
   nome: string;
@@ -102,64 +102,6 @@ export function TabelaFuncionarios() {
     setSelectedFunc(funcionario);
     setIsDialogOpen(true);
   };
-
-  function getIniciais(nomeCompleto: string): string {
-    if (!nomeCompleto) return "";
-
-    // Divide o nome por espaços e remove espaços extras
-    const nomes = nomeCompleto.trim().split(/\s+/);
-
-    // Pega a primeira letra do primeiro nome
-    const primeiraSigla = nomes[0]?.[0] || "";
-
-    // Pega a primeira letra do último nome (se houver mais de um nome)
-    const segundaSigla = nomes.length > 1 ? nomes[nomes.length - 1][0] : "";
-
-    // Retorna as siglas juntas em caixa alta
-    return (primeiraSigla + segundaSigla).toUpperCase();
-  }
-
-  function calcularTempoPermanencia(
-    dataContratacao: Date,
-    dataSaida?: Date | null,
-  ): string {
-    const inicio = new Date(dataContratacao);
-    const fim = dataSaida ? new Date(dataSaida) : new Date();
-
-    let anos = fim.getFullYear() - inicio.getFullYear();
-    let meses = fim.getMonth() - inicio.getMonth();
-    let dias = fim.getDate() - inicio.getDate();
-
-    // Ajuste se o dia atual for menor que o dia de início
-    if (dias < 0) {
-      meses--;
-      const ultimoDiaMesAnterior = new Date(
-        fim.getFullYear(),
-        fim.getMonth(),
-        0,
-      ).getDate();
-      dias += ultimoDiaMesAnterior;
-    }
-
-    // Ajuste se o mês atual for menor que o mês de início
-    if (meses < 0) {
-      anos--;
-      meses += 12;
-    }
-
-    // Formatação da string de retorno
-    const partes = [];
-    if (anos > 0) partes.push(`${anos} ${anos === 1 ? "ano" : "anos"}`);
-    if (meses > 0) partes.push(`${meses} ${meses === 1 ? "mês" : "meses"}`);
-
-    // Se for menos de um mês, mostra os dias
-    if (anos === 0 && meses === 0) {
-      if (dias <= 0) return "Iniciou hoje";
-      partes.push(`${dias} ${dias === 1 ? "dia" : "dias"}`);
-    }
-
-    return partes.join(" e ");
-  }
 
   return (
     <>

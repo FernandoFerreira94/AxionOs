@@ -13,7 +13,6 @@ import {
   Eye,
   Pencil,
   Trash2,
-  CalendarRange,
   ClipboardList,
 } from "lucide-react";
 import {
@@ -181,7 +180,7 @@ export function TabelaOrdemServico() {
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-col gap-1">
-                      <BadgeFuncao funcao={iten.tipo} />
+                      <BadgeFuncao funcao={iten.tipo as string} />
                       <span className="text-xs text-slate-500 italic">
                         {iten.tecnico}
                       </span>

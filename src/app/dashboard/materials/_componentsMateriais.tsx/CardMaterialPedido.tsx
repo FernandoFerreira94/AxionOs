@@ -85,7 +85,7 @@ export function CardMaterialPedido() {
           <Table>
             <TableHeader>
               <TableRow className="border-gray-400/20 hover:bg-transparent">
-                <TableHead className="w-[120px]">Origem / Ref</TableHead>
+                <TableHead className="">Origem / Ref</TableHead>
                 <TableHead>Material / Marca</TableHead>
                 <TableHead className="text-center">Qtd</TableHead>
                 <TableHead className="text-right">Ações</TableHead>
@@ -134,7 +134,7 @@ export function CardMaterialPedido() {
 
                   {/* QUANTIDADE */}
                   <TableCell className="text-center">
-                    <div className="flex flex-col items-center justify-center bg-white/5 rounded p-1 min-w-[50px]">
+                    <div className="flex flex-col items-center justify-center bg-white/5 rounded p-1 ">
                       <span className="text-sm font-bold">
                         {pedido.quantidade}
                       </span>

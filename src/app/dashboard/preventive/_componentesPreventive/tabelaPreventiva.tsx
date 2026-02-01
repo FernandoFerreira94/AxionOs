@@ -180,7 +180,7 @@ export default function TabelaPreventiva() {
                           </div>
                         )}
                       </TableCell>
-                      <TableCell className="min-w-[120px]">
+                      <TableCell className="">
                         <div className="flex flex-col gap-1.5">
                           <div className="flex justify-between text-[10px] text-slate-400">
                             <span>Progresso</span>
