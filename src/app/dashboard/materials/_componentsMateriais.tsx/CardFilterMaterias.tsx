@@ -26,7 +26,6 @@ export default function CardFilterMateriais({
           <Funnel size={16} /> Filtros de Busca
         </div>
         <div className="grid grid-cols-3 gap-6 items-center">
-          {/* Repassamos o valor e a função de atualizar apenas o campo 'departamento' */}
           <FilterDepartamento
             value={filters.departamento}
             onChange={(val) =>

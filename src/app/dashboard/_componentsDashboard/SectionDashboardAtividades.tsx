@@ -27,9 +27,8 @@ import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
 
 const listAtividades: OrdenservicoProps[] = [
   {
-    os: "#AC-1023",
+    os: "#RF-1023",
     status: "Aberto",
-
     tipoServico: "Corretiva",
     tipo: "Refrigeração",
     atividade: "Ar-Condicionado",
@@ -44,9 +43,8 @@ const listAtividades: OrdenservicoProps[] = [
     materiais: ["Gas R-22"],
   },
   {
-    os: "#AC-1245",
+    os: "#EL-1245",
     status: "Material",
-
     tipoServico: "Melhoria",
     tipo: "Eletrica",
     atividade: "Troca de luminaria",
@@ -89,7 +87,6 @@ const listAtividades: OrdenservicoProps[] = [
   {
     os: "#CV-1254",
     status: "Finalizado",
-
     tipoServico: "Acompanhamento",
     tipo: "Civil",
     atividade: "Troca de pastilhas",
@@ -158,7 +155,7 @@ export default function SectionDashboardAtividades() {
                     {/* Coluna Categoria / Tecnico */}
                     <TableCell>
                       <div className="flex flex-col items-start gap-1">
-                        <BadgeFuncao funcao={item.tipo} />
+                        <BadgeFuncao funcao={item.tipo as string} />
                         <span className="text-xs text-slate-400 flex items-center gap-1">
                           <User size={12} /> {item.tecnico}
                         </span>

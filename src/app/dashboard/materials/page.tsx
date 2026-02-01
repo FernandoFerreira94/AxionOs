@@ -6,6 +6,8 @@ import CardFilterMateriais from "./_componentsMateriais.tsx/CardFilterMaterias";
 import { useState } from "react";
 import { DepartamentoProps } from "@/src/app/lib/type";
 import { TabelaMaterial } from "./_componentsMateriais.tsx/TabelaMaterial";
+import { CardMaterialPedido } from "./_componentsMateriais.tsx/CardMaterialPedido";
+import { CardBaixaMaterial } from "./_componentsMateriais.tsx/CardBaixaMaterial";
 
 export interface FiltersMateriais {
   departamento: DepartamentoProps;
@@ -16,7 +18,7 @@ export interface FiltersMateriais {
 export default function Materiais() {
   const [filters, setFilters] = useState<FiltersMateriais>({
     departamento: "Shopping Colinas", // Shop ou Torre
-    categoria: "Elétrica", // Elétrica ou Refri
+    categoria: "Todos", // Elétrica ou Refri
     busca: "", // Nome do material
   });
 
@@ -38,9 +40,13 @@ export default function Materiais() {
         }
       />
       <CardFilterMateriais filters={filters} setFilters={setFilters} />
-      <section className="mt-6 grid grid-cols-5 gap-4 mb-20">
-        <div className="col-span-3">
+      <section className="mt-6 grid grid-cols-2 gap-4 mb-20">
+        <div className="col-span-1">
           <TabelaMaterial />
+        </div>
+        <div className="flex flex-col gap-4">
+          <CardMaterialPedido />
+          <CardBaixaMaterial />
         </div>
       </section>
     </main>

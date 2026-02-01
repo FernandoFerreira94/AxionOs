@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState, useRef } from "react"; // 1. Adicionamos useRef
+import { useEffect, useState, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { color } from "@/src/app/styles/color";
 import { Search } from "lucide-react";
 
-export function InputSerachMaterial({
+export function InputSerachFuncionarios({
   value,
   onChange,
 }: {
@@ -39,12 +39,11 @@ export function InputSerachMaterial({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <Label className="text-sm font-medium">Buscar Material</Label>
       <div className="relative">
-        <Search className="absolute left-2.5 top-2.5 " size={16} />
+        <Search className="absolute left-2.5 top-3.5 " size={16} />
         <Input
-          placeholder="Digite o nome do material..."
-          className={`pl-9 ${color.bgMain} border-gray-400/20 `}
+          placeholder="Digite o nome do funcionario..."
+          className={`pl-8 ${color.bgMain} border-gray-400/20 h-11`}
           value={displayValue}
           onChange={(e) => setDisplayValue(e.target.value)}
         />

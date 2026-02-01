@@ -1,4 +1,4 @@
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/components/ui/label";
 import {
   Combobox,
   ComboboxContent,
@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/combobox";
 
 const statusOptions: string[] = [
+  "Todos",
   "Elétrica",
   "Civil",
   "Refrigeração",
@@ -43,7 +44,7 @@ export function FilterCategoria({ value, onChange }: FilterDepartamentoProps) {
           // O valor exibido agora é controlado pelo estado
         />
         <ComboboxContent>
-          <ComboboxEmpty>No items found.</ComboboxEmpty>
+          <ComboboxEmpty>Não existe categorias.</ComboboxEmpty>
           <ComboboxList>
             {(item) => (
               <ComboboxItem key={item} value={item}>

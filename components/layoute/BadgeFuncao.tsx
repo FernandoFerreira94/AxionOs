@@ -6,7 +6,7 @@ interface BadgeFuncaoProps {
   funcao: CategoriaProps | null; // Aceita o tipo da categoria ou null
 }
 
-export function BadgeFuncao({ funcao }: BadgeFuncaoProps) {
+export function BadgeFuncao({ funcao }: { funcao: string }) {
   return (
     <Badge
       variant={"secondary"}
