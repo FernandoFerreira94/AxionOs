@@ -12,7 +12,7 @@ interface Props {
 
 export function CardFilterFuncionarios({ filters, setFilters }: Props) {
   return (
-    <Card className={`border-gray-400/40 ${color.textSecondary} mt-6`}>
+    <Card className={`border-gray-400/10 ${color.textSecondary} mt-6`}>
       <CardContent>
         <section className="grid grid-cols-2 gap-6 items-center">
           <InputSerachFuncionarios

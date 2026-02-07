@@ -114,7 +114,7 @@ export function TabelaFuncionarios() {
               size={30}
               className={`${color.textIconAzulClaro} ${color.bgIconAzulClaro} p-1.5 rounded-sm`}
             />
-            <h2 className="text-xl font-bold">Quadro de Colaboradores</h2>
+            <h2 className="">Quadro de Colaboradores</h2>
           </CardTitle>
         </CardHeader>
 

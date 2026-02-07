@@ -152,7 +152,7 @@ export function TabelaMaterial() {
               size={30}
               className={`${color.textIconMarron} ${color.bgIconMarron} p-1.5 rounded-sm`}
             />
-            <h2 className={`text-xl font-bold ${color.textBranco}`}>
+            <h2 className={`text-base  ${color.textBranco}`}>
               Inventário de Estoque
             </h2>
           </div>
