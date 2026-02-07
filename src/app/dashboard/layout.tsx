@@ -10,10 +10,10 @@ export default function DashboardLayout({
   return (
     <>
       <main
-        className={`relative w-full min-h-screen flex   ${color.bgMain} ${color.textBranco}`}
+        className={`relative w-full min-h-screen flex max-sm:flex-col  ${color.bgMain} ${color.textBranco}`}
       >
         <SideBar />
-        <section className="w-full ml-48">{children}</section>
+        <section className="w-full ml-48 max-sm:ml-0 ">{children}</section>
       </main>
     </>
   );

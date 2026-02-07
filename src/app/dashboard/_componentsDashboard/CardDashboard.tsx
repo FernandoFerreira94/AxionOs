@@ -4,12 +4,12 @@ import { statusConfig } from "@/src/app/utils/statusConfig";
 
 export function CardDashboard() {
   return (
-    <section className="w-full grid grid-cols-5 gap-6 mt-4">
+    <section className="w-full grid grid-cols-5 gap-6 max-sm:gap-4 mt-4 max-sm:grid-cols-2 ">
       {Object.entries(statusConfig).map(([status, config]) => {
         const Icon = config.icon;
 
         return (
-          <Card key={status} className={`${config.text}`}>
+          <Card key={status} className={`${config.text} `}>
             <CardContent className="flex flex-col gap-2 ">
               <div className="flex items-center gap-2">
                 <Icon

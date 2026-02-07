@@ -29,13 +29,22 @@ export default function Login() {
         ease={80}
         refresh
       />
-      <div className=" container mx-auto w-full flex items-center justify-center">
-        <Card className={`bg-[#111827]/80 w-1/3 z-10`}>
+      <div className=" container mx-auto w-full flex items-center justify-center max-sm:px-4">
+        <Card className={`bg-[#111827]/80 w-1/3 z-10 max-sm:w-12/12`}>
           <CardContent>
-            <div className="flex items-center justify-center gap-4">
-              <Image src={Logo} alt="logo" width={100} height={100} />
-              <div>
-                <h1 className={`font-semibold text-6xl ${color.textBranco} `}>
+            <div className="max-sm:flex-col flex items-center justify-center gap-4">
+              <Image
+                src={Logo}
+                alt="logo"
+                width={100}
+                height={100}
+                priority
+                className="max-sm:w-3/10"
+              />
+              <div className="flex flex-col ">
+                <h1
+                  className={`font-semibold text-6xl max-sm:text-4xl max-sm:text-center ${color.textBranco} `}
+                >
                   Axion OS
                 </h1>
                 <span className={`text-base ${color.textTertiary} italic`}>
