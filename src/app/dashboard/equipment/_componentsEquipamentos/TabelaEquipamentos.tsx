@@ -33,6 +33,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { formatarData } from "@/src/app/actions/formatarData";
+import { MobileEquipamentoCards } from "./MobileEquipamentoCards";
 
 interface Equipamento {
   id: string;
@@ -82,8 +83,8 @@ export default function TableEquipamentos() {
   const router = useRouter();
 
   return (
-    <Card className="mt-6 border-gray-400/40">
-      <CardHeader>
+    <Card className="mt-6 border-gray-400/40 max-sm:bg-transparent  max-sm:border-none">
+      <CardHeader className="max-sm:p-0">
         <CardTitle className="flex items-center gap-2">
           <Wrench
             size={30}
@@ -92,9 +93,9 @@ export default function TableEquipamentos() {
           <h2 className={`${color.textBranco}`}>Lista de Equipamentos</h2>
         </CardTitle>
       </CardHeader>
-      <CardContent className="">
-        <div className="rounded-md   bg-transparent">
-          <Table>
+      <CardContent className="p-0">
+        <div className="rounded-md max-sm:hidden  bg-transparent">
+          <Table >
             <TableHeader>
               <TableRow className="border-gray-400/20 hover:bg-transparent">
                 <TableHead className="">TAG</TableHead>
@@ -182,6 +183,11 @@ export default function TableEquipamentos() {
               ))}
             </TableBody>
           </Table>
+        </div>
+        <div className="md:hidden space-y-1">
+          {listEquipamentos.map((item) => (
+            <MobileEquipamentoCards key={item.id} item={item} />
+          ))}
         </div>
       </CardContent>
     </Card>

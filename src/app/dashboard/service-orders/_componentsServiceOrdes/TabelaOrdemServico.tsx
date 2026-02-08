@@ -31,6 +31,7 @@ import { BadgeTipoServico } from "@/components/layoute/BadgeTipoServico";
 import { BadgeStatus } from "@/components/layoute/BadgeStatus";
 import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
+import { MobileOSTableCards } from "./MobileOsTable";
 
 const listAtividades: OrdenservicoProps[] = [
   {
@@ -130,8 +131,8 @@ const listAtividades: OrdenservicoProps[] = [
 
 export function TabelaOrdemServico() {
   return (
-    <Card className="border-gray-400/40 mt-6">
-      <CardHeader>
+    <Card className="border-gray-400/40 mt-6 max-sm:bg-transparent max-sm:border-none mb-20">
+      <CardHeader className="max-sm:p-0">
         <CardTitle className="flex items-center gap-2">
           <ClipboardList
             size={30}
@@ -140,9 +141,9 @@ export function TabelaOrdemServico() {
           <h2 className={`${color.textBranco}`}>Lista de Ordens de Servico</h2>
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
+      <CardContent className="max-sm:p-0">
+        <Table className="max-sm:hidden">
+          <TableHeader >
             <TableRow className={` ${color.textBranco}`}>
               <TableHead className="">OS</TableHead>
               <TableHead className="">Tipo serviço</TableHead>
@@ -227,6 +228,12 @@ export function TabelaOrdemServico() {
             })}
           </TableBody>
         </Table>
+        {/* VIEW MOBILE */}
+        <div className="md:hidden space-y-2">
+          {listAtividades.map((iten) => (
+            <MobileOSTableCards key={iten.os} item={iten} />
+          ))}
+        </div>
       </CardContent>
     </Card>
   );

@@ -25,7 +25,7 @@ export default function CardServiceOrdenFilter({
         <div className="flex gap-2 items-center mb-4">
           <Funnel size={16} /> Filter
         </div>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6 max-sm:grid-cols-1">
           <FIlterStatus
             value={filters.status}
            onChange={(val) =>

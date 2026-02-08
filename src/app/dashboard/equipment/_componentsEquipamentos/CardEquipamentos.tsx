@@ -42,10 +42,10 @@ const infoCard = [
 
 export function CardEquipamentos() {
   return (
-    <section className="grid grid-cols-5 gap-6">
+    <section className="grid grid-cols-5 gap-6 max-sm:gap-3 max-sm:grid-cols-2">
       {infoCard.map((item) => (
-        <Card key={item.titulo}>
-          <CardContent>
+        <Card key={item.titulo} className="max-sm:py-4">
+          <CardContent >
             <div className="flex items-center gap-2 mb-2">
               <item.Icon
                 size={30}

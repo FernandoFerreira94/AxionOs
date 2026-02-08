@@ -13,7 +13,7 @@ export default function Preventivas() {
 
   console.log(filterPreventivas);
   return (
-    <main className="w-full h-screen flex flex-col px-8 pb-4 overflow-hidden">
+    <main className="w-full min-h-screen flex flex-col px-8 max-sm:px-4 pb-4 overflow-hidden">
       <HeaderDashboard
         titulo="Preventivas de equipamentos"
         subTitulo="Planos de manutenção programada e acompanhamento de execução"
@@ -24,7 +24,10 @@ export default function Preventivas() {
         onChange={setFilterPreventivas}
       />
       <SectionPreventivas />
+      <section className="max-sm:hidden">
+
       <MensagemPrevintavas />
+      </section>
     </main>
   );
 }

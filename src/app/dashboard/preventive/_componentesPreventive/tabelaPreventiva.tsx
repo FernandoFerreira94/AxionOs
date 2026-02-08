@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getStatusAgendamento } from "../utils/getSattusAgendamento";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
+import { MobilePreventivaTableCards } from "./MobilePreventivaTableCards";
 
 interface Preventiva {
   id: string; // Adicionado ID
@@ -84,12 +85,9 @@ const listPreventivas: Preventiva[] = [
 
 export default function TabelaPreventiva() {
   return (
-    <div className={`flex-1 min-h-0 w-full  my-4 ${color.bgMain}`}>
-      <ScrollArea
-        className={`h-full w-full rounded-md border border-gray-400/40 `}
-      >
-        <Card className="">
-          <CardHeader>
+    <div className={` max-sm:mb-20 my-4 ${color.bgMain} `}>
+        <Card className=" max-sm:bg-transparent max-sm:mt-4 max-sm:p-0">
+          <CardHeader className="max-sm:p-0">
             <CardTitle className="flex items-center gap-2">
               <CalendarRange
                 size={30}
@@ -98,8 +96,11 @@ export default function TabelaPreventiva() {
               <h2 className={`${color.textBranco}`}>Preventivas Ativas</h2>
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <Table>
+      <ScrollArea
+        className={`h-full max-sm:h-150 w-full rounded-md  border-gray-400/40 `}
+      >
+          <CardContent className="max-sm:p-0 " >
+            <Table className="max-sm:hidden">
               <TableHeader>
                 <TableRow className="border-gray-400/20 hover:bg-transparent  }">
                   <TableHead>ID</TableHead>
@@ -254,9 +255,15 @@ export default function TabelaPreventiva() {
                 })}
               </TableBody>
             </Table>
+
+            <div className="md:hidden space-y-2">
+            {listPreventivas.map((item) => (
+              <MobilePreventivaTableCards key={item.id} item={item} />
+            ))}
+          </div>
           </CardContent>
-        </Card>
       </ScrollArea>
+        </Card>
     </div>
   );
 }

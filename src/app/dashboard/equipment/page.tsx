@@ -14,12 +14,12 @@ export default function Equipamentos() {
 
   console.log(filterEquipamentos);
   return (
-    <main className="w-full h-screen flex flex-col px-8 pb-4 overflow-hidden">
+    <main className="w-full min-h-screen flex flex-col px-8 max-sm:px-4 pb-4 overflow-hidden">
       <HeaderDashboard
         titulo="Equipamentos"
         subTitulo="Gestão e manutenção de equipamentos"
         component={
-          <Button>
+          <Button className="max-sm:w-full">
             <Plus /> Novo Equipamento
           </Button>
         }

@@ -27,12 +27,12 @@ export default function ServiceOrderm() {
 
   console.log(filterOrdemService);
   return (
-    <main className={` w-full min-h-screen  px-8 `}>
+    <main className={` w-full min-h-screen  px-8 max-sm:px-4`}>
       <HeaderDashboard
         titulo="Ordens de serviço"
         subTitulo="Gerenciar ordens de serviço de manutenção"
         component={
-          <Button>
+          <Button className="max-sm:w-full max-sm:h-10">
             <Plus /> Criar OS
           </Button>
         }

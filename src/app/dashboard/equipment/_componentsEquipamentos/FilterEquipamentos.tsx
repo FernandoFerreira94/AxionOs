@@ -8,11 +8,11 @@ interface Props {
 
 export function FilterEquipamentos({ value, onChange }: Props) {
   return (
-    <section className=" mt-4">
+    <section className=" mt-4 ">
       <p className={`text-sm ${color.textSecondary}`}>
         Filtrar por Especialidade
       </p>
-      <div className="flex items-center gap-2 mt-2">
+      <div className="flex items-center gap-2 mt-2 max-sm:grid max-sm:grid-cols-3">
         <Button
           variant={value === "Todos" ? "default" : "outline"}
           onClick={() => onChange("Todos")}

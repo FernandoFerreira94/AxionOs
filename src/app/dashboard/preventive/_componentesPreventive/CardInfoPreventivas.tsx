@@ -4,10 +4,10 @@ import { Preventivas } from "../utils/cardInfoPreventivas";
 
 export function CardPreventivas() {
   return (
-    <section className="grid grid-cols-3 gap-6">
+    <section className="grid grid-cols-3 gap-6 max-sm:gap-4  max-sm:grid-cols-1">
       {Preventivas.map((item) => (
-        <Card key={item.titulo}>
-          <CardContent className="flex flex-col gap-2 ">
+        <Card key={item.titulo} className="max-sm:py-4 border-gray-400/20">
+          <CardContent className="flex flex-col gap-2 max-sm:flex-row max-sm:justify-between">
             <div className="flex items-center gap-2">
               <item.Icon
                 size={30}

@@ -30,7 +30,7 @@ export function SideBar() {
         </div>
       </header>
       <header
-        className={`hidden max-sm:flex  h-17 items-center px-6 rounded-b-lg w-full shadow-sm shadow-b shadow-gray-900 ${color.bgSideBar} `}
+        className={`hidden max-sm:flex  h-17 items-center px-4 rounded-b-lg w-full shadow-sm shadow-b shadow-gray-900 ${color.bgSideBar} `}
       >
         <div className="flex gap-6 items-center">
           <HamburgueSideBar />

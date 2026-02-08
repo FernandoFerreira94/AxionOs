@@ -97,18 +97,21 @@ export function HamburgueSideBar() {
           </SheetDescription>
         </SheetHeader>
 
+<div className="flex flex-col gap-0">
+
         {listaLink.map((item) => (
-          <SheetClose asChild key={item.url}>
+          <SheetClose asChild key={item.url} >
             <Link
               href={item.url}
-              className={`flex items-center gap-2  px-4 py-2 rounded-sm  text-sm transition duration-300 ${pathname === item.url ? color.bgLiSideBarActive : color.bgLiSidebarDisabled}`}
-            >
+              className={`flex items-center gap-2  px-4 py-2  rounded-sm  text-sm transition duration-300 ${pathname === item.url ? color.bgLiSideBarActive : color.bgLiSidebarDisabled}`}
+              >
               {item.icon} {item.link}
             </Link>
           </SheetClose>
         ))}
+        </div>
 
-        <SheetFooter>
+        <SheetFooter className="p-0">
           <LiSidebarFooter />
         </SheetFooter>
       </SheetContent>
