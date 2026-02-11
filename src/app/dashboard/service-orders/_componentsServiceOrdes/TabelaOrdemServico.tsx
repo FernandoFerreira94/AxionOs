@@ -32,6 +32,7 @@ import { BadgeStatus } from "@/components/layoute/BadgeStatus";
 import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 import { MobileOSTableCards } from "./MobileOsTable";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const listAtividades: OrdenservicoProps[] = [
   {
@@ -131,7 +132,7 @@ const listAtividades: OrdenservicoProps[] = [
 
 export function TabelaOrdemServico() {
   return (
-    <Card className="border-gray-400/40 mt-6 max-sm:bg-transparent max-sm:border-none mb-20">
+    <Card className="border-gray-400/40 mt-6 max-sm:bg-transparent max-sm:border-none mb-20 max-sm:py-4">
       <CardHeader className="max-sm:p-0">
         <CardTitle className="flex items-center gap-2">
           <ClipboardList
@@ -142,98 +143,100 @@ export function TabelaOrdemServico() {
         </CardTitle>
       </CardHeader>
       <CardContent className="max-sm:p-0">
-        <Table className="max-sm:hidden">
-          <TableHeader >
-            <TableRow className={` ${color.textBranco}`}>
-              <TableHead className="">OS</TableHead>
-              <TableHead className="">Tipo serviço</TableHead>
-              <TableHead>Serviço / Local</TableHead>
-              <TableHead>Categoria / Técnico</TableHead>
-              <TableHead>Status / Data Abertura</TableHead>
-              <TableHead>Prioridade</TableHead>
-              <TableHead className="text-right">Ações</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {listAtividades.map((iten) => {
-              const config =
-                statusConfig[iten.status as keyof typeof statusConfig];
-              if (!config) return null; // proteção mínima
+        <ScrollArea className="max-h-180 w-full overflow-hidden max-sm:max-h-220">
+          <Table className="max-sm:hidden">
+            <TableHeader>
+              <TableRow className={` ${color.textBranco}`}>
+                <TableHead className="">OS</TableHead>
+                <TableHead className="">Tipo serviço</TableHead>
+                <TableHead>Serviço / Local</TableHead>
+                <TableHead>Categoria / Técnico</TableHead>
+                <TableHead>Status / Data Abertura</TableHead>
+                <TableHead>Prioridade</TableHead>
+                <TableHead className="text-right">Ações</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {listAtividades.map((iten) => {
+                const config =
+                  statusConfig[iten.status as keyof typeof statusConfig];
+                if (!config) return null; // proteção mínima
 
-              return (
-                <TableRow
-                  key={iten.os}
-                  className={`group hover:bg-white/5  ${color.textTertiary} hover:${color.textBranco} cursor-pointer`}
-                >
-                  <TableCell className={`font-medium `}>{iten.os}</TableCell>
-                  <TableCell>
-                    <BadgeTipoServico tipo={iten.tipoServico} />
-                  </TableCell>
-                  <TableCell className="text-white">
-                    <div className="flex flex-col gap-1">
-                      <span className="truncate font-medium text-sm">
-                        {iten.atividade}
-                      </span>
-                      <span className="text-xs text-slate-500 truncate">
-                        {iten.complexo} - {iten.local}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex flex-col gap-1">
-                      <BadgeFuncao funcao={iten.tipo as string} />
-                      <span className="text-xs text-slate-500 italic">
-                        {iten.tecnico}
-                      </span>
-                    </div>
-                  </TableCell>
+                return (
+                  <TableRow
+                    key={iten.os}
+                    className={`group hover:bg-white/5  ${color.textTertiary} hover:${color.textBranco} cursor-pointer`}
+                  >
+                    <TableCell className={`font-medium `}>{iten.os}</TableCell>
+                    <TableCell>
+                      <BadgeTipoServico tipo={iten.tipoServico} />
+                    </TableCell>
+                    <TableCell className="text-white">
+                      <div className="flex flex-col gap-1">
+                        <span className="truncate font-medium text-sm">
+                          {iten.atividade}
+                        </span>
+                        <span className="text-xs text-slate-500 truncate">
+                          {iten.complexo} - {iten.local}
+                        </span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex flex-col gap-1">
+                        <BadgeFuncao funcao={iten.tipo as string} />
+                        <span className="text-xs text-slate-500 italic">
+                          {iten.tecnico}
+                        </span>
+                      </div>
+                    </TableCell>
 
-                  <TableCell className="flex flex-col gap-1 ">
-                    <BadgeStatus status={iten.status} />
-                    <span className="text-xs  italic ml-2 text-white">
-                      {formatarData(iten.dataAbertura)}
-                    </span>
-                  </TableCell>
-                  <TableCell>
-                    <BadgePrioridade prioridade={iten.prioridade} />
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent
-                        align="end"
-                        className={`${color.bgCard} ${color.textBranco} `}
-                      >
-                        <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                        <DropdownMenuItem className="gap-2 cursor-pointer">
-                          <Eye size={14} />
-                          Visualizar detalhes
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className="gap-2 cursor-pointer ">
-                          <Pencil size={14} /> Editar OS
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="gap-2 cursor-pointer ">
-                          <Trash2 size={14} /> Excluir
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-        {/* VIEW MOBILE */}
-        <div className="md:hidden space-y-2">
-          {listAtividades.map((iten) => (
-            <MobileOSTableCards key={iten.os} item={iten} />
-          ))}
-        </div>
+                    <TableCell className="flex flex-col gap-1 ">
+                      <BadgeStatus status={iten.status} />
+                      <span className="text-xs  italic ml-2 text-white">
+                        {formatarData(iten.dataAbertura)}
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <BadgePrioridade prioridade={iten.prioridade} />
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" className="h-8 w-8 p-0">
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          align="end"
+                          className={`${color.bgCard} ${color.textBranco} `}
+                        >
+                          <DropdownMenuLabel>Ações</DropdownMenuLabel>
+                          <DropdownMenuItem className="gap-2 cursor-pointer">
+                            <Eye size={14} />
+                            Visualizar detalhes
+                          </DropdownMenuItem>
+                          <DropdownMenuItem className="gap-2 cursor-pointer ">
+                            <Pencil size={14} /> Editar OS
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem className="gap-2 cursor-pointer ">
+                            <Trash2 size={14} /> Excluir
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+          {/* VIEW MOBILE */}
+          <div className="md:hidden space-y-2">
+            {listAtividades.map((iten) => (
+              <MobileOSTableCards key={iten.os} item={iten} />
+            ))}
+          </div>
+        </ScrollArea>
       </CardContent>
     </Card>
   );

@@ -12,7 +12,7 @@ export function FilterPreventivas({ value, onChange }: Props) {
       <p className={`text-sm ${color.textSecondary}`}>
         Filtrar por preventivas
       </p>
-      <div className="flex items-center gap-2 mt-2">
+      <div className="flex items-center gap-2 mt-2 max-sm:grid max-sm:grid-cols-2 max-sm:gap-3">
         <Button
           variant={value === "Todos" ? "default" : "outline"}
           onClick={() => onChange("Todos")}
@@ -22,12 +22,14 @@ export function FilterPreventivas({ value, onChange }: Props) {
         <Button
           variant={value === "Vencidas" ? "default" : "outline"}
           onClick={() => onChange("Vencidas")}
+          className={`${value === "Vencidas" && "bg-[#D16163] hover:bg-[#D16163]"}`}
         >
           Vencidas (3)
         </Button>
         <Button
           variant={value === "Finalizadas" ? "default" : "outline"}
           onClick={() => onChange("Finalizadas")}
+          className={`${value === "Finalizadas" && "bg-[#38A566] hover:bg-[#38A566]"}`}
         >
           Finalizadas (0){" "}
         </Button>

@@ -66,7 +66,7 @@ export function CardBaixaMaterial() {
       </CardHeader>
       <CardContent>
         <Table>
-          <TableHeader>
+          <TableHeader className="sticky top-0 z-10 bg-[#0a0a0a]">
             <TableRow className="border-gray-400/20 hover:bg-transparent">
               <TableHead>OS / Técnico</TableHead>
               <TableHead>Material</TableHead>

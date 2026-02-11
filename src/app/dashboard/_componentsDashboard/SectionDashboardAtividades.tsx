@@ -105,130 +105,97 @@ const listAtividades: OrdenservicoProps[] = [
 
 export default function SectionDashboardAtividades() {
   return (
-    <ScrollArea className="h-150 w-full">
-    <Card className={`${color.bgCard} max-sm:bg-transparent max-sm:mb-3 max-sm:border-none max-sm:pt-4 border-gray-400/20`}>
-        <CardHeader className="max-sm:p-0">
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp
-              size={30}
-              className={`${color.textIconAzul} ${color.bgIconAzul} p-1.5 rounded-sm`}
-            />
-            <h2 className={`${color.textBranco}`}>Atividades Recentes</h2>
-          </CardTitle>
-        </CardHeader>
-        
-        <CardContent className="max-sm:p-0 ">
-          {/* --- VERSÃO DESKTOP (TABELA) --- */}
+    <Card
+      className={`${color.bgCard} max-sm:bg-transparent  max-sm:border-none max-sm:py-8 border-gray-400/20`}
+    >
+      <CardHeader className="max-sm:p-0">
+        <CardTitle className="flex items-center gap-2">
+          <TrendingUp
+            size={30}
+            className={`${color.textIconAzul} ${color.bgIconAzul} p-1.5 rounded-sm`}
+          />
+          <h2 className={`${color.textBranco}`}>Atividades Recentes</h2>
+        </CardTitle>
+      </CardHeader>
+
+      <CardContent className="max-sm:p-0 ">
+        {/* --- VERSÃO DESKTOP (TABELA) --- */}
+        <ScrollArea className="h-150 w-full">
           <div className="hidden md:block">
             <Table>
               <TableHeader>
-                <TableRow className={`hover:bg-transparent border-gray-400/20 ${color.textBranco}`}>
+                <TableRow
+                  className={`hover:bg-transparent border-gray-400/20 ${color.textBranco}`}
+                >
                   <TableHead>OS</TableHead>
                   <TableHead>Tipo / Status</TableHead>
                   <TableHead>Categoria / Técnico</TableHead>
                   <TableHead>Data / Prioridade</TableHead>
                 </TableRow>
               </TableHeader>
-                  <TableBody>
+              <TableBody>
+                {listAtividades.map((item) => {
+                  return (
+                    <TableRow
+                      key={item.os}
+                      className={`border-gray-400/10 hover:bg-white/5  ${color.textTertiary} hover:${color.textBranco} cursor-pointer group`}
+                    >
+                      {/* Coluna OS */}
 
-              {listAtividades.map((item) => {
+                      <TableCell className="font-mono text-sm">
+                        <InforOrdemServico data={item} />
+                      </TableCell>
 
-                return (
+                      {/* Coluna Tipo / Status - 2. CORREÇÃO: Div interna para o Flex */}
 
-                  <TableRow
+                      <TableCell>
+                        <div className="flex flex-col items-start gap-1.5">
+                          <BadgeTipoServico tipo={item.tipoServico} />
 
-                    key={item.os}
+                          <BadgeStatus status={item.status} />
+                        </div>
+                      </TableCell>
 
-                    className={`border-gray-400/10 hover:bg-white/5  ${color.textTertiary} hover:${color.textBranco} cursor-pointer group`}
+                      {/* Coluna Categoria / Tecnico */}
 
-                  >
+                      <TableCell>
+                        <div className="flex flex-col items-start gap-1">
+                          <BadgeFuncao funcao={item.tipo as string} />
 
-                    {/* Coluna OS */}
+                          <span className="text-xs text-slate-400 flex items-center gap-1">
+                            <User size={12} /> {item.tecnico}
+                          </span>
+                        </div>
+                      </TableCell>
 
-                    <TableCell className="font-mono text-sm">
+                      {/* Coluna Data */}
 
-                      <InforOrdemServico data={item} />
+                      <TableCell>
+                        <div className="flex flex-col  gap-1 items-center">
+                          <span className={`text-xs ${color.textBranco}`}>
+                            {formatarData(
+                              item.dataFinalizado ?? item.dataAbertura,
+                            )}
+                          </span>
 
-                    </TableCell>
-
-
-
-                    {/* Coluna Tipo / Status - 2. CORREÇÃO: Div interna para o Flex */}
-
-                    <TableCell>
-
-                      <div className="flex flex-col items-start gap-1.5">
-
-                        <BadgeTipoServico tipo={item.tipoServico} />
-
-                        <BadgeStatus status={item.status} />
-
-                      </div>
-
-                    </TableCell>
-
-
-
-                    {/* Coluna Categoria / Tecnico */}
-
-                    <TableCell>
-
-                      <div className="flex flex-col items-start gap-1">
-
-                        <BadgeFuncao funcao={item.tipo as string} />
-
-                        <span className="text-xs text-slate-400 flex items-center gap-1">
-
-                          <User size={12} /> {item.tecnico}
-
-                        </span>
-
-                      </div>
-
-                    </TableCell>
-
-
-
-                    {/* Coluna Data */}
-
-                    <TableCell>
-
-                      <div className="flex flex-col  gap-1 items-center">
-
-                        <span className={`text-xs ${color.textBranco}`}>
-
-                          {formatarData(
-
-                            item.dataFinalizado ?? item.dataAbertura,
-
-                          )}
-
-                        </span>
-
-                        <BadgePrioridade prioridade={item.prioridade} />
-
-                      </div>
-
-                    </TableCell>
-
-                  </TableRow>
-
-                );
-
-              })}
-
-            </TableBody>
+                          <BadgePrioridade prioridade={item.prioridade} />
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
             </Table>
           </div>
 
           {/* --- VERSÃO MOBILE (CARDS) --- */}
           <div className="md:hidden space-y-4">
-             {listAtividades.map((item) => (
-               <MobileAtividadeCards key={item.os} data={item} />
-             ))}
+            {listAtividades.map((item) => (
+              <MobileAtividadeCards key={item.os} data={item} />
+            ))}
           </div>
-        </CardContent>
-      </Card>
-    </ScrollArea>
+        </ScrollArea>
+      </CardContent>
+    </Card>
   );
 }

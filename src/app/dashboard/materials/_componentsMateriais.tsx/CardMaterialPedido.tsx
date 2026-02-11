@@ -83,7 +83,7 @@ export function CardMaterialPedido() {
       <CardContent>
         <TooltipProvider>
           <Table>
-            <TableHeader>
+            <TableHeader className="sticky top-0 z-10 bg-[#0a0a0a]">
               <TableRow className="border-gray-400/20 hover:bg-transparent">
                 <TableHead className="">Origem / Ref</TableHead>
                 <TableHead>Material / Marca</TableHead>

@@ -12,14 +12,15 @@ import {
 import { color } from "@/src/app/styles/color";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trophy } from "lucide-react";
+import { BadgeIniciais } from "@/src/app/actions/BadgeIniciais";
 
 // Mock de desempenho dos técnicos
 const desempenhoDados = [
-  { nome: "Eduardo Perotti", finalizadas: 7, apoio: 10, avatar: "EP" },
-  { nome: "Fernando Pedro", finalizadas: 17, apoio: 13, avatar: "FP" },
-  { nome: "Marcelo Mendes", finalizadas: 11, apoio: 4, avatar: "MM" },
-  { nome: "Alex Santos", finalizadas: 13, apoio: 12, avatar: "AS" },
-  { nome: "Antonior Silva", finalizadas: 20, apoio: 30, avatar: "AS" },
+  { nome: "Eduardo Perotti", finalizadas: 7, apoio: 10 },
+  { nome: "Fernando Pedro", finalizadas: 17, apoio: 13 },
+  { nome: "Marcelo Mendes", finalizadas: 11, apoio: 4 },
+  { nome: "Alex Santos", finalizadas: 13, apoio: 12 },
+  { nome: "Antonior Silva", finalizadas: 20, apoio: 30 },
 ];
 
 export function GraficoFuncionarios() {
@@ -54,9 +55,7 @@ export function GraficoFuncionarios() {
                   {/* INFO TÉCNICO */}
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[10px] font-bold text-blue-400">
-                        {item.avatar}
-                      </div>
+                      <BadgeIniciais nomeCompleto={item.nome} />
                       <span className="text-sm font-medium text-slate-200">
                         {item.nome}
                       </span>

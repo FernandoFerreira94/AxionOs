@@ -24,24 +24,25 @@ export default function Materiais() {
 
   console.log(filters);
   return (
-    <main className={` w-full min-h-screen  pr-4  pl-8`}>
+    <main className={` w-full min-h-screen  pr-4  pl-8 max-sm:px-4`}>
       <HeaderDashboard
         titulo="Materiais"
         subTitulo="Controle de estoque e materiais"
         component={
-          <div className="flex items-center gap-4">
-            <Button variant={"outline"}>
+          <div className="flex items-center gap-4 max-sm:flex-col max-sm:gap-2">
+            <Button variant={"outline"} className="max-sm:w-full">
               <Plus /> Cadastrar Categoria
             </Button>
-            <Button>
+            <Button className=" max-sm:w-full">
               <Plus /> Cadastrar Material
             </Button>
           </div>
         }
       />
       <CardFilterMateriais filters={filters} setFilters={setFilters} />
-      <section className="mt-6 grid grid-cols-2 gap-4 mb-20">
-        <div className="col-span-1">
+      <hr className="text-gray-400/20 " />
+      <section className="mt-6 grid grid-cols-2 gap-4 mb-20 max-sm:grid-cols-1 ">
+        <div className="col-span-1 ">
           <TabelaMaterial />
         </div>
         <div className="flex flex-col gap-4">

@@ -85,21 +85,21 @@ const listPreventivas: Preventiva[] = [
 
 export default function TabelaPreventiva() {
   return (
-    <div className={` max-sm:mb-20 my-4 ${color.bgMain} `}>
-        <Card className=" max-sm:bg-transparent max-sm:mt-4 max-sm:p-0">
-          <CardHeader className="max-sm:p-0">
-            <CardTitle className="flex items-center gap-2">
-              <CalendarRange
-                size={30}
-                className={`${color.textIconMarron} ${color.bgIconMarron} p-1.5 rounded-sm`}
-              />
-              <h2 className={`${color.textBranco}`}>Preventivas Ativas</h2>
-            </CardTitle>
-          </CardHeader>
-      <ScrollArea
-        className={`h-full max-sm:h-150 w-full rounded-md  border-gray-400/40 `}
-      >
-          <CardContent className="max-sm:p-0 " >
+    <div className={` max-sm:mb-12 my-4 ${color.bgMain} `}>
+      <Card className=" max-sm:bg-transparent max-sm:mt-4 max-sm:p-0 max-sm:border-none">
+        <CardHeader className="max-sm:p-0">
+          <CardTitle className="flex items-center gap-2">
+            <CalendarRange
+              size={30}
+              className={`${color.textIconMarron} ${color.bgIconMarron} p-1.5 rounded-sm`}
+            />
+            <h2 className={`${color.textBranco}`}>Preventivas Ativas</h2>
+          </CardTitle>
+        </CardHeader>
+        <ScrollArea
+          className={`h-full max-sm:h-150 w-full rounded-md  border-gray-400/40 `}
+        >
+          <CardContent className="max-sm:p-0 ">
             <Table className="max-sm:hidden">
               <TableHeader>
                 <TableRow className="border-gray-400/20 hover:bg-transparent  }">
@@ -257,13 +257,13 @@ export default function TabelaPreventiva() {
             </Table>
 
             <div className="md:hidden space-y-2">
-            {listPreventivas.map((item) => (
-              <MobilePreventivaTableCards key={item.id} item={item} />
-            ))}
-          </div>
+              {listPreventivas.map((item) => (
+                <MobilePreventivaTableCards key={item.id} item={item} />
+              ))}
+            </div>
           </CardContent>
-      </ScrollArea>
-        </Card>
+        </ScrollArea>
+      </Card>
     </div>
   );
 }

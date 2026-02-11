@@ -20,18 +20,15 @@ export default function CardServiceOrdenFilter({
   setFilters,
 }: CardServiceOrdenFilterProps) {
   return (
-    <Card className={`border-gray-400/40 ${color.textSecondary}`}>
+    <Card className={`border-gray-400/40 ${color.textSecondary} `}>
       <CardContent className="">
         <div className="flex gap-2 items-center mb-4">
           <Funnel size={16} /> Filter
         </div>
-        <div className="grid grid-cols-3 gap-6 max-sm:grid-cols-1">
+        <div className="grid grid-cols-3 gap-6 max-sm:grid-cols-1 max-sm:gap-2 max-sm:mb-2">
           <FIlterStatus
             value={filters.status}
-           onChange={(val) =>
-              setFilters((prev) => ({ ...prev, status: val }))
-            }
-            
+            onChange={(val) => setFilters((prev) => ({ ...prev, status: val }))}
           />
           <FilterCategoria
             value={filters.categoria}
@@ -39,13 +36,13 @@ export default function CardServiceOrdenFilter({
               setFilters((prev) => ({ ...prev, categoria: val }))
             }
           />
-          <FilterTypeService
-            value={filters.tipoServico}
-            onChange={(val) =>
-              setFilters((prev) => ({ ...prev, tipoServico: val }))
-            }
-          />
         </div>
+        <FilterTypeService
+          value={filters.tipoServico}
+          onChange={(val) =>
+            setFilters((prev) => ({ ...prev, tipoServico: val }))
+          }
+        />
       </CardContent>
     </Card>
   );

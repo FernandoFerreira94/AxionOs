@@ -44,6 +44,7 @@ import { formatarData } from "@/src/app/actions/formatarData";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getIniciais } from "@/src/app/actions/getIniciaisName";
 import { calcularTempoPermanencia } from "@/src/app/actions/calculoTempoServico";
+import { BadgeIniciais } from "@/src/app/actions/BadgeIniciais";
 
 interface Funcionario {
   nome: string;
@@ -140,9 +141,7 @@ export function TabelaFuncionarios() {
                     >
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="h-9 w-9 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold border border-blue-500/20">
-                            {iniciais}
-                          </div>
+                          <BadgeIniciais nomeCompleto={"fernando Ferreira"} />
                           <div className="flex flex-col">
                             <span className="text-sm font-semibold">
                               {item.nome}

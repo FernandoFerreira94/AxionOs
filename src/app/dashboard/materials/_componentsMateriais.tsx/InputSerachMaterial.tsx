@@ -41,7 +41,10 @@ export function InputSerachMaterial({
     <div className="flex flex-col gap-1.5">
       <Label className="text-sm font-medium">Buscar Material</Label>
       <div className="relative">
-        <Search className="absolute left-2.5 top-2.5 " size={16} />
+        <Search
+          className="absolute left-2.5 top-1/2 -translate-y-1/2 "
+          size={16}
+        />
         <Input
           placeholder="Digite o nome do material..."
           className={`pl-9 ${color.bgMain} border-gray-400/20 `}
