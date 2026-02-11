@@ -13,10 +13,10 @@ const shiftsData = [
     color: "text-amber-500",
     bg: "bg-amber-500/10",
     tecnicos: [
-      { nome: "Izais Silva", funcao: "M-7" },
-      { nome: "Fernando Pedro", funcao: "M-5" },
-      { nome: "Eduarto Perotti", funcao: "M-6" },
-      { nome: "Marcelo Mendes", funcao: "M-4" },
+      { nome: "Izais Silva", funcao: "Líder" },
+      { nome: "Fernando Pedro", funcao: "Eletricista" },
+      { nome: "Eduarto Perotti", funcao: "tecnico Refrigeração" },
+      { nome: "Marcelo Mendes", funcao: "Oficial Geral" },
     ],
 
     horario: "07:00 - 19:00",
@@ -31,10 +31,10 @@ const shiftsData = [
     bg: "bg-amber-500/10",
     border: "border-amber-500",
     tecnicos: [
-      { nome: "Izais Silva", funcao: "M-7" },
-      { nome: "Fernando Pedro", funcao: "M-5" },
-      { nome: "Eduarto Perotti", funcao: "M-6" },
-      { nome: "Marcelo Mendes", funcao: "M-4" },
+      { nome: "Izais Silva", funcao: "Líder" },
+      { nome: "Fernando Pedro", funcao: "Eletricista" },
+      { nome: "Eduarto Perotti", funcao: "tecnico Refrigeração" },
+      { nome: "Marcelo Mendes", funcao: "Oficial Geral" },
     ],
     horario: "07:00 - 19:00",
     workDay: true,
@@ -48,10 +48,10 @@ const shiftsData = [
     color: "text-blue-400",
     bg: "bg-blue-400/10",
     tecnicos: [
-      { nome: "Izais Silva", funcao: "M-7" },
-      { nome: "Fernando Pedro", funcao: "M-5" },
-      { nome: "Eduarto Perotti", funcao: "M-6" },
-      { nome: "Marcelo Mendes", funcao: "M-4" },
+      { nome: "Izais Silva", funcao: "Líder" },
+      { nome: "Fernando Pedro", funcao: "Eletricista" },
+      { nome: "Eduarto Perotti", funcao: "tecnico Refrigeração" },
+      { nome: "Marcelo Mendes", funcao: "Oficial Geral" },
     ],
     horario: "19:00 - 07:00",
     workDay: false,
@@ -65,10 +65,10 @@ const shiftsData = [
     bg: "bg-blue-400/10",
     border: "border-blue-400",
     tecnicos: [
-      { nome: "Izais Silva", funcao: "M-7" },
-      { nome: "Fernando Pedro", funcao: "M-5" },
-      { nome: "Eduarto Perotti", funcao: "M-6" },
-      { nome: "Marcelo Mendes", funcao: "M-4" },
+      { nome: "Izais Silva", funcao: "Líder" },
+      { nome: "Fernando Pedro", funcao: "Eletricista" },
+      { nome: "Eduarto Perotti", funcao: "tecnico Refrigeração" },
+      { nome: "Marcelo Mendes", funcao: "Oficial Geral" },
     ],
     horario: "19:00 - 07:00",
     workDay: true,
@@ -137,7 +137,7 @@ export function CardShifts() {
                       <span className="text-sm text-slate-300 font-medium truncate">
                         {nome.nome}
                       </span>
-                      <span className="text-slate-500 font-bold uppercase tracking-tight text-[11px]">
+                      <span className="text-slate-500 font-bold  tracking-tight text-[11px]">
                         {nome.funcao}
                       </span>
                     </div>

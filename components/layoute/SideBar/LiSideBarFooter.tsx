@@ -9,7 +9,7 @@ import { BadgeIniciais } from "@/src/app/actions/BadgeIniciais";
 export function LiSidebarFooter() {
   const pathname = usePathname();
   const listaLink = {
-    url: "/settings",
+    url: "/dashboard/settings",
     icon: <Settings size={18} />,
     link: "Configurações",
   };
@@ -21,13 +21,15 @@ export function LiSidebarFooter() {
 
         <li className=" flex  gap-2 px-2">
           {" "}
-          <BadgeIniciais nomeCompleto="Eduardo Perotti" />{" "}
-          <div className="flex justify-center flex-col  ">
-            <span className="text-sm  font-semibold">Eduardo Perrote</span>
-            <span className="text-[11px] text-slate-500 ">
-              Tecnico Refrigeração
-            </span>
-          </div>
+          <Link href={"users"} className={` flex gap-2 hover:bg-transparent `}>
+            <BadgeIniciais nomeCompleto="Eduardo Perotti" />{" "}
+            <div className="flex justify-center flex-col  ">
+              <span className="text-sm  font-semibold">Eduardo Perotti</span>
+              <span className="text-[11px] text-slate-500 ">
+                Tecnico Refrigeração
+              </span>
+            </div>
+          </Link>
         </li>
         <li>
           <Link

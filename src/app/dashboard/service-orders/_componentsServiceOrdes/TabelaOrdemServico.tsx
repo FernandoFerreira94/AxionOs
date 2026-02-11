@@ -6,6 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,7 +37,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const listAtividades: OrdenservicoProps[] = [
   {
-    os: "#AC-1023",
+    os: "AC-1023",
     status: "Em Execução",
     tipoServico: "Corretiva",
     tipo: "Refrigeração",
@@ -52,7 +53,7 @@ const listAtividades: OrdenservicoProps[] = [
     materiais: ["Gas R-22"],
   },
   {
-    os: "#AC-1245",
+    os: "AC-1245",
     status: "Material",
 
     tipoServico: "Melhoria",
@@ -78,7 +79,7 @@ const listAtividades: OrdenservicoProps[] = [
     ],
   },
   {
-    os: "#EL-45784",
+    os: "EL-45784",
     status: "Fiscalização",
 
     tipoServico: "Corretiva",
@@ -95,7 +96,7 @@ const listAtividades: OrdenservicoProps[] = [
     materiais: ["Disjuntor 20A  (2 unidades)"],
   },
   {
-    os: "#CV-1254",
+    os: "CV-1254",
     status: "Finalizado",
 
     tipoServico: "Corretiva",
@@ -112,7 +113,7 @@ const listAtividades: OrdenservicoProps[] = [
     materiais: null,
   },
   {
-    os: "#AT-0003",
+    os: "AT-0003",
     status: "Aberto",
 
     tipoServico: "Acompanhamento",
@@ -131,6 +132,7 @@ const listAtividades: OrdenservicoProps[] = [
 ];
 
 export function TabelaOrdemServico() {
+  const router = useRouter();
   return (
     <Card className="border-gray-400/40 mt-6 max-sm:bg-transparent max-sm:border-none mb-20 max-sm:py-4">
       <CardHeader className="max-sm:p-0">
@@ -211,7 +213,14 @@ export function TabelaOrdemServico() {
                           className={`${color.bgCard} ${color.textBranco} `}
                         >
                           <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                          <DropdownMenuItem className="gap-2 cursor-pointer">
+                          <DropdownMenuItem
+                            className="gap-2 cursor-pointer"
+                            onClick={() =>
+                              router.push(
+                                `/dashboard/service-orders/${iten.os}`,
+                              )
+                            }
+                          >
                             <Eye size={14} />
                             Visualizar detalhes
                           </DropdownMenuItem>

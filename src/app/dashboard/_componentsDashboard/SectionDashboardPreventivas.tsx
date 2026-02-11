@@ -71,7 +71,7 @@ export default function SectionDashboardPreventivas() {
       </CardHeader>
       <CardContent className="max-sm:p-0">
         {/* --- VERSÃO DESKTOP (TABELA) --- */}
-        <ScrollArea className="h-150 w-full">
+        <ScrollArea className="max-h-150 w-full">
           <div className="hidden md:block">
             <Table>
               <TableHeader>

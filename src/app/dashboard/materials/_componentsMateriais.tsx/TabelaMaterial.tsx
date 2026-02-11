@@ -176,7 +176,7 @@ export function TabelaMaterial() {
       <CardContent className="p-0 ">
         <ScrollArea className="max-h-180 w-full px-4 max-sm:p-0 overflow-hidden">
           {/* VIEW DESKTOP: TABELA */}
-          <div className="hidden ">
+          <div className="max-sm:hidden ">
             <Table>
               <TableHeader className="sticky top-0 z-10 bg-[#0a0a0a]">
                 <TableRow className="border-gray-400/20 hover:bg-transparent">

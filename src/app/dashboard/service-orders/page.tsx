@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import { HeaderDashboard } from "@/components/layoute/HeadeDashboard";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+
 import CardServiceOrdenFilter from "./_componentsServiceOrdes/CardServiceOrdenFilter";
 import { TabelaOrdemServico } from "./_componentsServiceOrdes/TabelaOrdemServico";
 import {
@@ -10,6 +9,7 @@ import {
   StatusProps,
   TipoServicoProps,
 } from "@/src/app/lib/type";
+import ShowDialogCreateOs from "@/components/layoute/ShowDialogCreateOs";
 
 export interface FilterOrdemService {
   status: StatusProps;
@@ -31,11 +31,7 @@ export default function ServiceOrderm() {
       <HeaderDashboard
         titulo="Ordens de serviço"
         subTitulo="Gerenciar ordens de serviço de manutenção"
-        component={
-          <Button className="max-sm:w-full max-sm:h-10">
-            <Plus /> Criar OS
-          </Button>
-        }
+        component={<ShowDialogCreateOs />}
       />
       <CardServiceOrdenFilter
         filters={filterOrdemService}

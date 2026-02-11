@@ -36,13 +36,13 @@ export default function CardServiceOrdenFilter({
               setFilters((prev) => ({ ...prev, categoria: val }))
             }
           />
+          <FilterTypeService
+            value={filters.tipoServico}
+            onChange={(val) =>
+              setFilters((prev) => ({ ...prev, tipoServico: val }))
+            }
+          />
         </div>
-        <FilterTypeService
-          value={filters.tipoServico}
-          onChange={(val) =>
-            setFilters((prev) => ({ ...prev, tipoServico: val }))
-          }
-        />
       </CardContent>
     </Card>
   );

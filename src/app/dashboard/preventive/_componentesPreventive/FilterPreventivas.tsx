@@ -12,10 +12,11 @@ export function FilterPreventivas({ value, onChange }: Props) {
       <p className={`text-sm ${color.textSecondary}`}>
         Filtrar por preventivas
       </p>
-      <div className="flex items-center gap-2 mt-2 max-sm:grid max-sm:grid-cols-2 max-sm:gap-3">
+      <div className="flex items-center gap-2 mt-2 max-sm:grid max-sm:grid-cols-2 max-sm:gap-3 ">
         <Button
           variant={value === "Todos" ? "default" : "outline"}
           onClick={() => onChange("Todos")}
+          className={`${value === "Todos" && `${color.bgButton} hover:${color.bgButton}`}`}
         >
           Todos
         </Button>

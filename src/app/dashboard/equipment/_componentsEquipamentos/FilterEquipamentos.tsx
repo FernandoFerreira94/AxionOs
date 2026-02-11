@@ -32,13 +32,15 @@ export function FilterEquipamentos({ value, onChange }: Props) {
           Refrigeração
         </Button>
         <Button
-          className={` ${color.bgButtonDisabled}  ${value === "Ativo" && "bg-[#38A566] hover:bg-[#38A566]"}`}
+          variant={value === "Ativo" ? "default" : "outline"}
+          className={`  ${value === "Ativo" && "bg-[#38A566] hover:bg-[#38A566]"}`}
           onClick={() => onChange("Ativo")}
         >
           Ativos
         </Button>
         <Button
-          className={` ${color.bgButtonDisabled} ${value === "Desativado" && "bg-[#D16163] hover:bg-[#D16163] "}`}
+          variant={value === "Desativado" ? "default" : "outline"}
+          className={` ${value === "Desativado" && "bg-neutral-600 hover:bg-neutral-700"}`}
           onClick={() => onChange("Desativado")}
         >
           Desativados

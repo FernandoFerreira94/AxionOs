@@ -9,6 +9,7 @@ import {
   Eye,
   Pencil,
   Trash2,
+  Play,
 } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
 import {
@@ -34,6 +35,7 @@ import {
 import { getStatusAgendamento } from "../utils/getSattusAgendamento";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 import { MobilePreventivaTableCards } from "./MobilePreventivaTableCards";
+import { useRouter } from "next/navigation";
 
 interface Preventiva {
   id: string; // Adicionado ID
@@ -84,6 +86,7 @@ const listPreventivas: Preventiva[] = [
 ];
 
 export default function TabelaPreventiva() {
+  const router = useRouter();
   return (
     <div className={` max-sm:mb-12 my-4 ${color.bgMain} `}>
       <Card className=" max-sm:bg-transparent max-sm:mt-4 max-sm:p-0 max-sm:border-none">
@@ -236,6 +239,27 @@ export default function TabelaPreventiva() {
                             className={`${color.bgCard} ${color.textBranco} `}
                           >
                             <DropdownMenuLabel>Ações</DropdownMenuLabel>
+                            <DropdownMenuItem
+                              className="gap-2 cursor-pointer"
+                              onClick={() =>
+                                router.push(
+                                  `/dashboard/preventive/checklist/${item.id}`,
+                                )
+                              }
+                            >
+                              {item.progresso === 0 && (
+                                <>
+                                  <Play size={14} />
+                                  Inicializar
+                                </>
+                              )}
+                              {item.progresso === 100 && (
+                                <>
+                                  <CheckCircle2 size={14} />
+                                  Finalizar
+                                </>
+                              )}
+                            </DropdownMenuItem>
                             <DropdownMenuItem className="gap-2 cursor-pointer">
                               <Eye size={14} />
                               Visualizar detalhes

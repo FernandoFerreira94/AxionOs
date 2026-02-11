@@ -28,7 +28,7 @@ export function FilterTypeService({ value, onChange }: Props) {
     }
   };
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5 ">
       <Label className="text-sm font-medium">Tipo de Serviço</Label>
 
       {/* 3. Passar o valor e a função de mudança para o Combobox */}

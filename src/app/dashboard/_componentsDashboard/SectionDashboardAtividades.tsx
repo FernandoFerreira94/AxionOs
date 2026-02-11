@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { TrendingUp, User } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
-import { InforOrdemServico } from "@/components/layoute/InforOrdemServico";
+import { InforOrdemServico } from "@/src/app/dashboard/_componentsDashboard/InforOrdemServico";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { OrdenservicoProps } from "@/src/app/lib/type";
 import { BadgeTipoServico } from "@/components/layoute/BadgeTipoServico";
@@ -120,7 +120,7 @@ export default function SectionDashboardAtividades() {
 
       <CardContent className="max-sm:p-0 ">
         {/* --- VERSÃO DESKTOP (TABELA) --- */}
-        <ScrollArea className="h-150 w-full">
+        <ScrollArea className="max-h-150 w-full">
           <div className="hidden md:block">
             <Table>
               <TableHeader>

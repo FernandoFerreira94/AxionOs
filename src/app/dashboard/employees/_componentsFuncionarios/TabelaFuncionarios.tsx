@@ -107,7 +107,7 @@ export function TabelaFuncionarios() {
   return (
     <>
       <Card
-        className={`border-gray-400/40 flex flex-col h-[calc(100vh-160px)] mt-6 mb-6 overflow-hidden  shadow-2xl ${color.textBranco}`}
+        className={`border-gray-400/40 flex flex-col  mt-6 mb-6 overflow-hidden  shadow-2xl ${color.textBranco}`}
       >
         <CardHeader className="pb-4 flex-none">
           <CardTitle className="flex items-center gap-2">
@@ -120,7 +120,7 @@ export function TabelaFuncionarios() {
         </CardHeader>
 
         <CardContent className="p-0 overflow-hidden">
-          <ScrollArea className="h-full w-full px-6">
+          <ScrollArea className="max-h-150 w-full px-6">
             <Table>
               <TableHeader className={`${color.bgMain}  `}>
                 <TableRow className="border-gray-400/20 hover:bg-transparent ">
@@ -133,7 +133,6 @@ export function TabelaFuncionarios() {
               </TableHeader>
               <TableBody>
                 {infoFuncionarios.map((item) => {
-                  const iniciais = getIniciais(item.nome);
                   return (
                     <TableRow
                       key={item.nome}

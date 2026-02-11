@@ -22,10 +22,10 @@ import { color } from "@/src/app/styles/color";
 import { clsx } from "clsx";
 import { statusConfig } from "@/src/app/utils/statusConfig";
 import { formatarData } from "@/src/app/actions/formatarData";
-import { ItemInfo } from "./InfoItem";
-import { ScrollArea } from "../ui/scroll-area";
-import { BadgeFuncao } from "./BadgeFuncao";
-import { BadgeStatus } from "./BadgeStatus";
+import { ItemInfo } from "@/components/layoute/InfoItem";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
+import { BadgeStatus } from "@/components/layoute/BadgeStatus";
 
 interface Props {
   data: OrdenservicoProps;
@@ -138,7 +138,7 @@ export function InforOrdemServico({ data }: Props) {
         </div>
         <ScrollArea className="max-h-40 w-full overflow-auto ">
           <section
-            className={`p-3 rounded-lg border border-slate-200 shadow-sm mt-4 ${color.bgMain}`}
+            className={`p-3 rounded-lg border border-slate-200 shadow-sm mt-4 ${color.bgSideBar}`}
           >
             <h4
               className={`text-xs font-semibold uppercase mb-2 flex items-center gap-2 ${color.textSecondary}`}
@@ -184,7 +184,7 @@ export function InforOrdemServico({ data }: Props) {
 
         <ScrollArea className="max-h-40 w-full overflow-auto ">
           <section
-            className={` p-3 rounded-lg border border-slate-200 shadow-sm ${color.bgMain}`}
+            className={` p-3 rounded-lg border border-slate-200 shadow-sm ${color.bgSideBar}`}
           >
             <h4
               className={`text-xs font-semibold text-gray uppercase mb-1  ${color.textSecondary}`}

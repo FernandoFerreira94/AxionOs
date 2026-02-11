@@ -95,7 +95,7 @@ export default function TableEquipamentos() {
       </CardHeader>
       <CardContent className="p-0">
         <div className="rounded-md max-sm:hidden  bg-transparent">
-          <Table >
+          <Table>
             <TableHeader>
               <TableRow className="border-gray-400/20 hover:bg-transparent">
                 <TableHead className="">TAG</TableHead>
@@ -112,7 +112,7 @@ export default function TableEquipamentos() {
                 <TableRow
                   key={item.id}
                   className={`border-gray-400/10 hover:bg-white/5 cursor-pointer group ${color.textTertiary} hover:${color.textBranco}`}
-                  onClick={() => router.push(`/equipamentos/${item.id}`)}
+                  onClick={() => router.push(`/dashboard/equipment/${item.id}`)}
                 >
                   {/* Coluna TAG */}
                   <TableCell className={`font-mono  `}>{item.tag}</TableCell>
