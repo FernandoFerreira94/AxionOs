@@ -2,13 +2,10 @@
 
 import { HeaderDashboard } from "@/components/layoute/HeadeDashboard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+
 import { color } from "@/src/app/styles/color";
 import {
-  User,
   Users,
-  Calendar,
   ArrowRightCircle,
   PlusCircle,
   History,
@@ -16,13 +13,13 @@ import {
   PackageMinus,
   Image as ImageIcon,
   Maximize2,
-  Wrench,
   Check,
 } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { CardFluxoInformacao } from "./_componentes/CardFluxoStatus";
+import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 
 // Exemplo de dados com fotos
 const listAtividades = {
@@ -81,13 +78,6 @@ const listAtividades = {
 };
 
 export default function ServiceOrders() {
-  const getPriorityColor = (p: string) => {
-    if (p === "Alta") return "bg-red-500/10 text-red-500 border-red-500/20";
-    if (p === "Media")
-      return "bg-amber-500/10 text-amber-500 border-amber-500/20";
-    return "bg-blue-500/10 text-blue-500 border-blue-500/20";
-  };
-
   return (
     <main className="w-full min-h-screen flex flex-col px-8 max-sm:px-4 pb-8 overflow-hidden">
       <HeaderDashboard
@@ -105,14 +95,12 @@ export default function ServiceOrders() {
                   Linha do Tempo
                 </CardTitle>
               </div>
-              <Badge className={getPriorityColor(listAtividades.prioridade)}>
-                Prioridade {listAtividades.prioridade}
-              </Badge>
+              <BadgePrioridade prioridade={listAtividades.prioridade} />
             </CardHeader>
 
             <CardContent className="p-0 flex-1 overflow-hidden">
               <ScrollArea className="h-[calc(100vh-250px)] p-6">
-                <div className="relative space-y-8 before:absolute before:inset-0 before:ml-2.5 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-500 before:via-gray-800 before:to-transparent">
+                <div className="relative space-y-8 before:absolute before:inset-0 before:ml-2.5 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-500 before:via-blue-500/40 before:to-transparent">
                   {listAtividades.historico.map((log, index) => (
                     <div
                       key={index}
@@ -122,7 +110,7 @@ export default function ServiceOrders() {
                         {log.icon}
                       </div>
 
-                      <div className="flex-1 bg-white/[0.03] border border-gray-400/10 rounded-xl p-5 space-y-4">
+                      <div className="flex-1 bg-white/[0.05] border border-gray-400/10 rounded-xl p-5 space-y-4">
                         <div className="flex items-center justify-between flex-wrap gap-2">
                           <div className="flex flex-col">
                             <span className="text-sm font-bold text-white">

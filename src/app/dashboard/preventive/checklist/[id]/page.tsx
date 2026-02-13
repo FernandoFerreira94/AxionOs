@@ -2,9 +2,7 @@
 
 import { HeaderDashboard } from "@/components/layoute/HeadeDashboard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { color } from "@/src/app/styles/color";
 import {
   Zap,
   User,
@@ -12,16 +10,13 @@ import {
   AlertTriangle,
   Settings,
   ClipboardCheck,
-  CheckCircle2,
-  XCircle,
-  Slash,
   Save,
 } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+
 import { Input } from "@/components/ui/input";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
+import { CheboxCheckList } from "./_componentes/CheboxCheckList";
 
 const infoEquipamento = {
   nome: "QGBT - Setor Shopping A",
@@ -121,9 +116,7 @@ export default function Checklist() {
                   Detalhes OS
                 </span>
                 <div className="flex flex-col gap-2">
-                  <Badge className="w-fit bg-red-500/10 text-red-500 border-red-500/20 text-[10px]">
-                    Prioridade {infoEquipamento.prioridade}
-                  </Badge>
+                  <BadgePrioridade prioridade={infoEquipamento.prioridade} />
                   <span className="text-[10px] text-slate-400 italic">
                     <BadgeFuncao funcao={infoEquipamento.categoria} />
                   </span>
@@ -156,63 +149,11 @@ export default function Checklist() {
                 </thead>
                 <tbody className="divide-y divide-gray-400/10">
                   {itensChecklist.map((item) => (
-                    <tr
+                    <CheboxCheckList
                       key={item.id}
-                      className="hover:bg-white/[0.02] transition-colors"
-                    >
-                      <td className="px-6 py-4 text-sm text-slate-300">
-                        <span className="text-blue-500 font-mono mr-2">
-                          {String(item.id).padStart(2, "0")}
-                        </span>
-                        {item.pergunta}
-                      </td>
-                      <td className="px-6 py-4">
-                        <RadioGroup
-                          defaultValue="ok"
-                          className="flex justify-center gap-4"
-                        >
-                          <div className="flex items-center space-x-1">
-                            <RadioGroupItem
-                              value="ok"
-                              id={`ok-${item.id}`}
-                              className="text-emerald-500 border-emerald-500/50"
-                            />
-                            <Label
-                              htmlFor={`ok-${item.id}`}
-                              className="text-[10px] font-bold text-emerald-500 cursor-pointer flex items-center gap-1"
-                            >
-                              <CheckCircle2 size={12} /> OK
-                            </Label>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <RadioGroupItem
-                              value="nc"
-                              id={`nc-${item.id}`}
-                              className="text-red-500 border-red-500/50"
-                            />
-                            <Label
-                              htmlFor={`nc-${item.id}`}
-                              className="text-[10px] font-bold text-red-500 cursor-pointer flex items-center gap-1"
-                            >
-                              <XCircle size={12} /> NC
-                            </Label>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <RadioGroupItem
-                              value="na"
-                              id={`na-${item.id}`}
-                              className="text-slate-500 border-slate-500/50"
-                            />
-                            <Label
-                              htmlFor={`na-${item.id}`}
-                              className="text-[10px] font-bold text-slate-500 cursor-pointer flex items-center gap-1"
-                            >
-                              <Slash size={12} /> N/A
-                            </Label>
-                          </div>
-                        </RadioGroup>
-                      </td>
-                    </tr>
+                      id={item.id}
+                      pergunta={item.pergunta}
+                    />
                   ))}
                 </tbody>
               </table>
