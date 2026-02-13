@@ -22,6 +22,7 @@ import {
 import { formatarData } from "@/src/app/actions/formatarData";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { CardFluxoInformacao } from "./_componentes/CardFluxoStatus";
 
 // Exemplo de dados com fotos
 const listAtividades = {
@@ -265,49 +266,11 @@ export default function ServiceOrders() {
 
         {/* COLUNA LATERAL (Fica igual ao seu código) */}
         <div className="lg:col-span-1 space-y-6">
-          <Card className="border-gray-400/20 bg-white/5">
-            <CardHeader>
-              <CardTitle className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-                Informações de Fluxo
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex flex-col gap-2">
-                <span className="text-[10px] text-slate-500 font-bold uppercase">
-                  Status Atual
-                </span>
-                <div className="flex items-center gap-2 text-emerald-400 font-bold">
-                  <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  {listAtividades.status}
-                </div>
-              </div>
-              <Separator className="bg-gray-400/10" />
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Calendar size={16} className="text-blue-500 mt-1" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-slate-500 font-bold uppercase">
-                      Abertura
-                    </span>
-                    <span className="text-xs text-slate-200">
-                      {formatarData(listAtividades.dataAbertura)}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <User size={16} className="text-slate-500 mt-1" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-slate-500 font-bold uppercase">
-                      Técnico Responsável
-                    </span>
-                    <span className="text-xs text-slate-200 font-medium">
-                      {listAtividades.tecnico}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <CardFluxoInformacao
+            tecnico={listAtividades.tecnico}
+            status={listAtividades.status}
+            dataAbertura={listAtividades.dataAbertura}
+          />
           <button className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/20">
             <ArrowRightCircle size={18} />
             Finalizar Ordem de Serviço

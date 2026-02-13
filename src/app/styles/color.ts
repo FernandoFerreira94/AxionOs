@@ -1,8 +1,8 @@
 export const color = {
   bgLogo: "bg-[#3477F2]",
   textLogo: "text-[#3477F2]",
-  bgMain: "bg-[#030712] ",
-  bgCard: "bg-[#ffffff]/5",
+  bgMain: "bg-[#050505]/99",
+  bgCard: "bg-white/5 ",
   bgButton: "bg-[#3477F2]",
   bgButtonHover: "transition duration-300 hover:bg-[#2C63C9]",
   bgButtonDisabled: "bg-[#1F2937] hover:bg-[#2F3A4D] transition duration-300",

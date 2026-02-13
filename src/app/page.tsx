@@ -30,7 +30,7 @@ export default function Login() {
         refresh
       />
       <div className=" container mx-auto w-full flex items-center justify-center max-sm:px-4">
-        <Card className={`bg-[#111827]/80 w-1/3 z-10 max-sm:w-12/12`}>
+        <Card className={` w-1/3 z-10 max-sm:w-12/12`}>
           <CardContent>
             <div className="max-sm:flex-col flex items-center justify-center gap-4">
               <Image
