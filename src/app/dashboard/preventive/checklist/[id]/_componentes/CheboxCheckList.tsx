@@ -1,6 +1,5 @@
 import { RadioGroupItem } from "@/components/ui/radio-group";
 import { RadioGroup } from "@/components/ui/radio-group";
-import { CheckCircle2, Slash, XCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 
 export function CheboxCheckList({
@@ -28,9 +27,9 @@ export function CheboxCheckList({
             />
             <Label
               htmlFor={`ok-${id}`}
-              className="text-[10px] font-bold text-emerald-500 cursor-pointer flex items-center gap-1"
+              className="text-sm  text-emerald-500 cursor-pointer flex items-center gap-1"
             >
-              <CheckCircle2 size={12} /> OK
+              OK
             </Label>
           </div>
           <div className="flex items-center space-x-1">
@@ -41,9 +40,9 @@ export function CheboxCheckList({
             />
             <Label
               htmlFor={`nc-${id}`}
-              className="text-[10px] font-bold text-red-500 cursor-pointer flex items-center gap-1"
+              className="text-sm  text-red-500 cursor-pointer flex items-center gap-1"
             >
-              <XCircle size={12} /> NC
+              NC
             </Label>
           </div>
           <div className="flex items-center space-x-1">
@@ -54,9 +53,9 @@ export function CheboxCheckList({
             />
             <Label
               htmlFor={`na-${id}`}
-              className="text-[10px] font-bold text-slate-500 cursor-pointer flex items-center gap-1"
+              className="text-sm  text-slate-500 cursor-pointer flex items-center gap-1"
             >
-              <Slash size={12} /> N/A
+              N/A
             </Label>
           </div>
         </RadioGroup>

@@ -1,13 +1,31 @@
 import { statusConfig } from "../utils/statusConfig";
 
+export interface FiltersMateriais {
+  departamento: DepartamentoProps;
+  categoria: string;
+  busca: string;
+}
+
+export interface TabelaMaterialProps {
+  codigo: string;
+  descricao: string;
+  despartamento: string;
+  marca: string | null;
+  categoria: string;
+  quantidade: string;
+  unidade: string;
+}
+
+export interface FilterProps {
+  value: string;
+  onChange: (value: string) => void;
+}
 export type MaterialDetail = {
   material: string;
   qtd: number;
 };
 
-export type PrioridadeProps = {
-  prioridade: "Alta" | "Media" | "Baixa";
-};
+export type PrioridadeProps = "Alta" | "Media" | "Baixa";
 
 export type CategoriaProps =
   | "Refrigeração"

@@ -1,8 +1,10 @@
 import { color } from "@/src/app/styles/color";
 import { Badge } from "../ui/badge";
 import { PrioridadeProps } from "@/src/app/lib/type";
-
-export function BadgePrioridade({ prioridade }: PrioridadeProps) {
+interface BadgePrioridadeProps {
+  prioridade: PrioridadeProps;
+}
+export function BadgePrioridade({ prioridade }: BadgePrioridadeProps) {
   return (
     <Badge
       variant="outline"
@@ -12,7 +14,9 @@ export function BadgePrioridade({ prioridade }: PrioridadeProps) {
                        ? `border-red-500/50  ${color.textIconVermelho} ${color.bgIconVermelho}`
                        : prioridade === "Media"
                          ? `border-yellow-500/50 ${color.textIconAmarelo} ${color.bgIconAmarelo}`
-                         : `border-green-500/50 ${color.textIconVerde} ${color.bgIconVerde}`
+                         : prioridade === "Baixa"
+                           ? `border-green-500/50 ${color.textIconVerde} ${color.bgIconVerde}`
+                           : `boreder-gray-500/50 ${color.textIconCinza} ${color.bgIconCinza}`
                    }
                       `}
     >

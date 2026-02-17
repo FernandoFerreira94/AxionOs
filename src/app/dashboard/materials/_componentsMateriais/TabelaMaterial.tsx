@@ -14,16 +14,8 @@ import {
 import { color } from "@/src/app/styles/color";
 import { Package, Hash, Building2 } from "lucide-react";
 import { MobileMaterialCards } from "./MobileMaterialCards";
+import { TabelaMaterialProps } from "@/src/app/lib/type";
 
-export interface TabelaMaterialProps {
-  codigo: string;
-  descricao: string;
-  despartamento: string;
-  marca: string | null;
-  categoria: string;
-  quantidade: string;
-  unidade: string;
-}
 // Os dados permanecem os mesmos
 const infoMaterial: TabelaMaterialProps[] = [
   // ELÉTRICA

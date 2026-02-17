@@ -2,18 +2,12 @@
 import { HeaderDashboard } from "@/components/layoute/HeadeDashboard";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import CardFilterMateriais from "./_componentsMateriais.tsx/CardFilterMaterias";
+import CardFilterMateriais from "./_componentsMateriais/CardFilterMaterias";
 import { useState } from "react";
-import { DepartamentoProps } from "@/src/app/lib/type";
-import { TabelaMaterial } from "./_componentsMateriais.tsx/TabelaMaterial";
-import { CardMaterialPedido } from "./_componentsMateriais.tsx/CardMaterialPedido";
-import { CardBaixaMaterial } from "./_componentsMateriais.tsx/CardBaixaMaterial";
-
-export interface FiltersMateriais {
-  departamento: DepartamentoProps;
-  categoria: string;
-  busca: string;
-}
+import { FiltersMateriais } from "@/src/app/lib/type";
+import { TabelaMaterial } from "./_componentsMateriais/TabelaMaterial";
+import { CardMaterialPedido } from "./_componentsMateriais/CardMaterialPedido";
+import { CardBaixaMaterial } from "./_componentsMateriais/CardBaixaMaterial";
 
 export default function Materiais() {
   const [filters, setFilters] = useState<FiltersMateriais>({

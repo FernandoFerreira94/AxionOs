@@ -115,7 +115,8 @@ export default function CriarOSFlow() {
 
       <Dialog open={open} onOpenChange={handleClose}>
         <DialogContent
-          className={`bg-neutral-900 border-gray-400/20 text-white   overflow-y-auto`}
+          className={`   overflow-y-auto`}
+          onPointerDownOutside={(e) => e.preventDefault()}
         >
           <DialogHeader>
             <div className="flex items-center gap-3">
