@@ -1,10 +1,11 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Hash, Building2, Package2, AlertCircle } from "lucide-react";
+import { Hash, Building2, AlertCircle } from "lucide-react";
 import { color } from "@/src/app/styles/color";
 import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
-import { TabelaMaterialProps } from "./TabelaMaterial";
+import { TabelaMaterialProps } from "@/src/app/lib/type";
+
 
 export function MobileMaterialCards({ item }: { item: TabelaMaterialProps }) {
   const isLowStock = Number(item.quantidade) < 5;

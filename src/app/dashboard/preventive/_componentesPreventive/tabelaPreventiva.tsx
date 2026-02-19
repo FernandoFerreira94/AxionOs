@@ -37,7 +37,7 @@ import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 import { MobilePreventivaTableCards } from "./MobilePreventivaTableCards";
 import { useRouter } from "next/navigation";
 
-interface Preventiva {
+export interface PreventivaProps {
   id: string; // Adicionado ID
   equipamento: string;
   local: string;
@@ -49,7 +49,7 @@ interface Preventiva {
   progresso: number; // Adicionado % de conclusão
 }
 
-const listPreventivas: Preventiva[] = [
+const listPreventivas: PreventivaProps[] = [
   {
     id: "EL-102",
     equipamento: "Gerador Shopping",
@@ -131,7 +131,12 @@ export default function TabelaPreventiva() {
 
                       <TableCell>
                         <div className="flex flex-col">
-                          <span className={`font-medium ${color.textBranco}`}>
+                          <span
+                            onClick={() =>
+                              router.push(`/dashboard/equipment/${item.id}`)
+                            }
+                            className={`font-medium ${color.textBranco} hover:text-blue-500`}
+                          >
                             {item.equipamento}
                           </span>
                           <span className="text-xs text-slate-500">

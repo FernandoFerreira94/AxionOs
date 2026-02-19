@@ -2,9 +2,14 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  MoreVertical, Eye, Pencil, Trash2, 
-  MapPin, Calendar, Settings, Box
+import {
+  MoreVertical,
+  Eye,
+  Pencil,
+  Trash2,
+  MapPin,
+  Calendar,
+  Settings,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -19,12 +24,13 @@ import { formatarData } from "@/src/app/actions/formatarData";
 import { BadgeFuncao } from "@/components/layoute/BadgeFuncao";
 import { BadgeStatusEquipamento } from "./BadgeStatusEquipamento";
 import { useRouter } from "next/navigation";
+import { EquipamentoProps } from "./TabelaEquipamentos";
 
-export function MobileEquipamentoCards({ item }: { item: any }) {
+export function MobileEquipamentoCards({ item }: { item: EquipamentoProps }) {
   const router = useRouter();
 
   return (
-    <Card 
+    <Card
       className="border-gray-400/20 bg-white/5 mb-3 py-3 active:scale-[0.98] transition-transform"
       onClick={() => router.push(`/equipamentos/${item.id}`)}
     >
@@ -39,7 +45,7 @@ export function MobileEquipamentoCards({ item }: { item: any }) {
               {item.nome}
             </h3>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <BadgeStatusEquipamento status={item.status} />
             <DropdownMenu>
@@ -48,13 +54,24 @@ export function MobileEquipamentoCards({ item }: { item: any }) {
                   <MoreVertical size={20} />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className={`${color.bgCard} ${color.textBranco} border-gray-700`}>
+              <DropdownMenuContent
+                align="end"
+                className={`${color.bgCard} ${color.textBranco} border-gray-700`}
+              >
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                <DropdownMenuItem className="gap-2"><Eye size={14}/> Detalhes</DropdownMenuItem>
-                <DropdownMenuItem className="gap-2"><Pencil size={14}/> Editar</DropdownMenuItem>
-                <DropdownMenuItem className="gap-2"><Calendar size={14}/> Programar Preventiva</DropdownMenuItem>
-                <DropdownMenuSeparator className="bg-gray-700"/>
-                <DropdownMenuItem className="gap-2 text-red-400"><Trash2 size={14}/> Excluir</DropdownMenuItem>
+                <DropdownMenuItem className="gap-2">
+                  <Eye size={14} /> Detalhes
+                </DropdownMenuItem>
+                <DropdownMenuItem className="gap-2">
+                  <Pencil size={14} /> Editar
+                </DropdownMenuItem>
+                <DropdownMenuItem className="gap-2">
+                  <Calendar size={14} /> Programar Preventiva
+                </DropdownMenuItem>
+                <DropdownMenuSeparator className="bg-gray-700" />
+                <DropdownMenuItem className="gap-2 text-red-400">
+                  <Trash2 size={14} /> Excluir
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -75,12 +92,14 @@ export function MobileEquipamentoCards({ item }: { item: any }) {
         {/* Rodapé: Categoria e Data Preventiva */}
         <div className="flex justify-between items-center pt-3 border-t border-gray-400/10">
           <BadgeFuncao funcao={item.categoria} />
-          
+
           <div className="flex flex-col items-end">
-            <span className="text-[9px] uppercase text-slate-500 font-bold tracking-tighter">Próxima Preventiva</span>
+            <span className="text-[9px] uppercase text-slate-500 font-bold tracking-tighter">
+              Próxima Preventiva
+            </span>
             <div className="flex items-center gap-1 text-xs text-slate-300">
-               <Calendar size={12} className="text-blue-500" />
-               {formatarData(item.dataPreventiva) || "Não agendada"}
+              <Calendar size={12} className="text-blue-500" />
+              {formatarData(item.dataPreventiva) || "Não agendada"}
             </div>
           </div>
         </div>

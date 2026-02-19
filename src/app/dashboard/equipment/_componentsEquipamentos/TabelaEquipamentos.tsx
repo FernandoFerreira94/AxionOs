@@ -35,7 +35,7 @@ import {
 import { formatarData } from "@/src/app/actions/formatarData";
 import { MobileEquipamentoCards } from "./MobileEquipamentoCards";
 
-interface Equipamento {
+export interface EquipamentoProps {
   id: string;
   tag: string;
   nome: string;
@@ -46,7 +46,7 @@ interface Equipamento {
   dataPreventiva: Date | null; // true = ativo, false = desativado
 }
 
-const listEquipamentos: Equipamento[] = [
+const listEquipamentos: EquipamentoProps[] = [
   {
     id: "1",
     tag: "CH-01",
@@ -119,7 +119,12 @@ export default function TableEquipamentos() {
                   {/* Coluna Nome / Modelo */}
                   <TableCell>
                     <div className="flex flex-col">
-                      <span className={`font-medium ${color.textBranco}`}>
+                      <span
+                        className={`font-medium ${color.textBranco} hover:text-blue-500`}
+                        onClick={() =>
+                          router.push(`/dashboard/equipment/${item.id}`)
+                        }
+                      >
                         {item.nome}
                       </span>
                       <span className="text-xs text-slate-500">
