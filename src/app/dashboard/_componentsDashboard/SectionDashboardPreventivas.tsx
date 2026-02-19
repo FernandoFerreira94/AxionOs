@@ -1,18 +1,12 @@
+import { useRouter } from "next/navigation";
 import { color } from "@/src/app/styles/color";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TriangleAlert, Timer } from "lucide-react";
 import { formatarData } from "@/src/app/actions/formatarData";
 import { calcularDiasAtraso } from "@/src/app/actions/calcularDiasAtraso";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -24,6 +18,7 @@ import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
 import { MobilePreventivaCards } from "./MobilePreventivaCards";
 
 interface Preventiva {
+  id: string;
   equipamento: string;
   local: string;
   tipo: "Eletrica" | "Refrigeração";
@@ -33,6 +28,7 @@ interface Preventiva {
 
 const listPreventivas: Preventiva[] = [
   {
+    id: "1",
     equipamento: "Gerador Shopping",
     local: "Doca",
     tipo: "Eletrica",
@@ -40,6 +36,7 @@ const listPreventivas: Preventiva[] = [
     prioridade: "Alta",
   },
   {
+    id: "2",
     equipamento: "Ar-Condicionado",
     local: "Qto 04",
     tipo: "Refrigeração",
@@ -47,6 +44,7 @@ const listPreventivas: Preventiva[] = [
     prioridade: "Media",
   },
   {
+    id: "3",
     equipamento: "Painel eletrico",
     local: "Almoxerifado",
     tipo: "Eletrica",
@@ -55,6 +53,7 @@ const listPreventivas: Preventiva[] = [
   },
 ];
 export default function SectionDashboardPreventivas() {
+  const router = useRouter();
   return (
     <Card
       className={`${color.bgCard} max-sm:bg-transparent max-sm:mb-3 max-sm:border-none border max-sm:p-0 border-gray-400/20`}
@@ -93,7 +92,14 @@ export default function SectionDashboardPreventivas() {
                   >
                     <TableCell className="">
                       <div className="flex flex-col gap-1 ">
-                        <span>{iten.equipamento}</span>
+                        <span
+                          onClick={() =>
+                            router.push(`/dashboard/equipment/${iten.id}`)
+                          }
+                          className="cursor-pointer hover:text-blue-400"
+                        >
+                          {iten.equipamento}
+                        </span>
                         <span className="text-xs text-slate-400">
                           {" "}
                           {iten.local}

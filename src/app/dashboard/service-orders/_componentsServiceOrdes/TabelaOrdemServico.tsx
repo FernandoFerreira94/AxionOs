@@ -167,9 +167,18 @@ export function TabelaOrdemServico() {
                 return (
                   <TableRow
                     key={iten.os}
-                    className={`group hover:bg-white/5  ${color.textTertiary} hover:${color.textBranco} cursor-pointer`}
+                    className={`group hover:bg-white/5   ${color.textTertiary} hover:${color.textBranco} `}
                   >
-                    <TableCell className={`font-medium `}>{iten.os}</TableCell>
+                    <TableCell>
+                      <span
+                        className={`font-medium cursor-pointer hover:text-blue-500 ${color.textBranco}`}
+                        onClick={() =>
+                          router.push(`/dashboard/service-orders/${iten.os}`)
+                        }
+                      >
+                        {iten.os}
+                      </span>
+                    </TableCell>
                     <TableCell>
                       <BadgeTipoServico tipo={iten.tipoServico} />
                     </TableCell>
@@ -210,11 +219,11 @@ export function TabelaOrdemServico() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                           align="end"
-                          className={`${color.bgCard} ${color.textBranco} `}
+                          className={`${color.bgMain} ${color.textBranco} `}
                         >
                           <DropdownMenuLabel>Ações</DropdownMenuLabel>
                           <DropdownMenuItem
-                            className="gap-2 cursor-pointer"
+                            className="gap-2 "
                             onClick={() =>
                               router.push(
                                 `/dashboard/service-orders/${iten.os}`,

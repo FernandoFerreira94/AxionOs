@@ -112,7 +112,6 @@ export default function TableEquipamentos() {
                 <TableRow
                   key={item.id}
                   className={`border-gray-400/10 hover:bg-white/5 cursor-pointer group ${color.textTertiary} hover:${color.textBranco}`}
-                  onClick={() => router.push(`/dashboard/equipment/${item.id}`)}
                 >
                   {/* Coluna TAG */}
                   <TableCell className={`font-mono  `}>{item.tag}</TableCell>
@@ -162,7 +161,12 @@ export default function TableEquipamentos() {
                         className={`${color.bgCard} ${color.textBranco} `}
                       >
                         <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                        <DropdownMenuItem className="gap-2 cursor-pointer">
+                        <DropdownMenuItem
+                          className="gap-2 cursor-pointer"
+                          onClick={() =>
+                            router.push(`/dashboard/equipment/${item.id}`)
+                          }
+                        >
                           <Eye size={14} />
                           Visualizar detalhes
                         </DropdownMenuItem>

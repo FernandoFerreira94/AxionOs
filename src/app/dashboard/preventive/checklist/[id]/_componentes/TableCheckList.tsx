@@ -1,11 +1,22 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ClipboardCheck, Save, Zap } from "lucide-react";
+import {
+  ClipboardCheck,
+  ImageIcon,
+  Maximize2,
+  PackagePlus,
+  Save,
+  Zap,
+} from "lucide-react";
 import { CheboxCheckList } from "./CheboxCheckList";
 import { Input } from "@base-ui/react";
 import { ShowListaMaterial } from "@/components/layoute/ShowListMaterial";
 import { useState } from "react";
 import { Trash2, Box } from "lucide-react";
+import { RequestProps } from "@/components/layoute/SideBar/ShowSolicitacaoMaterial";
+import { color } from "@/src/app/styles/color";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image";
 
 const itensChecklist = [
   {
@@ -37,15 +48,15 @@ const itensChecklist = [
 const inputClasName =
   "bg-black/40 border-gray-700 text-xs text-white h-9 text-center";
 
-interface MaterialSelecionado {
-  id: string;
+export interface MaterialSelecionado {
+  id?: string;
   os_id: string;
   material_id: string;
-  descricao: string;
+  descricao?: string;
   quantidade_usada: number;
   status_baixa?: boolean;
   data_gasto?: Date;
-  unidade: string;
+  unidade?: string;
 }
 
 export function TableCheckList({ idOs }: { idOs: string }) {
@@ -53,40 +64,56 @@ export function TableCheckList({ idOs }: { idOs: string }) {
     [],
   );
 
-  const adicionarMaterial = (novoItem: MaterialSelecionado) => {
-    setMateriaisUsados((prev) => {
-      // Evita duplicados, apenas soma a quantidade se já existir
-      const existe = prev.find(
-        (item) => item.material_id === novoItem.material_id,
-      );
-      if (existe) {
-        return prev.map((item) =>
-          item.material_id === novoItem.material_id
-            ? { ...item, quantidade_usada: item.quantidade_usada + 1 }
-            : item,
-        );
-      }
-      return [...prev, novoItem];
-    });
+  const [materialSolicitadoData, setMaterialSolicitadoData] = useState<
+    RequestProps[]
+  >([]);
+
+  const handleAdicionarSolicitacao = (novoMaterial: RequestProps) => {
+    setMaterialSolicitadoData((prev) => [...prev, novoMaterial]);
   };
 
+  const adicionarMaterial = (itensNovos: MaterialSelecionado[]) => {
+    // Mudei para receber array []
+    setMateriaisUsados((prev) => {
+      const estadoAtualizado = [...prev];
+
+      itensNovos.forEach((novoItem) => {
+        const indiceExiste = estadoAtualizado.findIndex(
+          (item) => item.material_id === novoItem.material_id,
+        );
+
+        if (indiceExiste !== -1) {
+          // Se já existe na lista de baixo, apenas soma a quantidade
+          estadoAtualizado[indiceExiste] = {
+            ...estadoAtualizado[indiceExiste],
+            quantidade_usada:
+              estadoAtualizado[indiceExiste].quantidade_usada +
+              novoItem.quantidade_usada,
+          };
+        } else {
+          // Se é novo, adiciona no array
+          estadoAtualizado.push(novoItem);
+        }
+      });
+
+      return estadoAtualizado;
+    });
+  };
   const removerMaterial = (id: string) => {
     setMateriaisUsados((prev) =>
       prev.filter((item) => item.material_id !== id),
     );
   };
-
-  const atualizarQtd = (id: string, valor: number) => {
-    setMateriaisUsados((prev) =>
-      prev.map((item) =>
-        item.material_id === id
-          ? { ...item, quantidade_usada: Math.max(1, valor) }
-          : item,
-      ),
+  const removerMaterialSolicitado = (id: string) => {
+    setMaterialSolicitadoData((prev) =>
+      prev.filter((item) => item.nome !== id),
     );
   };
 
   console.log(materiaisUsados);
+
+  console.log(materialSolicitadoData);
+
   return (
     <Card className="border-gray-400/20 bg-white/5 overflow-hidden">
       <CardHeader className="border-b border-gray-400/10 bg-white/[0.02]">
@@ -165,6 +192,8 @@ export function TableCheckList({ idOs }: { idOs: string }) {
                 <ShowListaMaterial
                   idOs={idOs}
                   onSelectMaterial={adicionarMaterial}
+                  onChangeMaterial={handleAdicionarSolicitacao}
+                  value={materialSolicitadoData}
                 />
               </div>
 
@@ -177,9 +206,9 @@ export function TableCheckList({ idOs }: { idOs: string }) {
                     </span>
                   </div>
                 ) : (
-                  materiaisUsados.map((item) => (
+                  materiaisUsados.map((item, index) => (
                     <div
-                      key={item.id}
+                      key={index}
                       className="bg-black/40 border border-gray-700 rounded-lg p-3 flex items-center justify-between"
                     >
                       <div className="flex flex-col gap-1">
@@ -192,18 +221,12 @@ export function TableCheckList({ idOs }: { idOs: string }) {
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <div className="flex items-center bg-white/5 rounded border border-gray-700">
-                          <input
-                            type="number"
-                            value={item.quantidade_usada}
-                            onChange={(e) =>
-                              atualizarQtd(
-                                item.material_id,
-                                Number(e.target.value),
-                              )
-                            }
-                            className="w-12 bg-transparent text-center text-xs text-white outline-none p-1"
-                          />
+                        <div
+                          className={`flex items-center bg-white/5 rounded border border-gray-700 px-2 py-1 ${color.textBranco} gap-2`}
+                        >
+                          <span className="text-sm ">
+                            {item.quantidade_usada}
+                          </span>
                           <span className="text-[10px] pr-2 text-slate-500 uppercase">
                             {item.unidade}
                           </span>
@@ -219,6 +242,115 @@ export function TableCheckList({ idOs }: { idOs: string }) {
                   ))
                 )}
               </div>
+
+              {materialSolicitadoData.length > 0 && (
+                <div className="flex flex-col  justify-between mb-4 mt-8">
+                  <h4 className="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-2">
+                    <PackagePlus size={14} /> Material Solicitado
+                  </h4>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
+                    {materialSolicitadoData.map((item, index) => (
+                      <div
+                        key={index}
+                        className="bg-black/40 border border-gray-700 rounded-lg p-3 flex items-center justify-between "
+                      >
+                        <div className="flex  items-center gap-4">
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-2">
+                              <span
+                                className={`text-[10px] ${color.textTertiary}`}
+                              >
+                                Nome:
+                              </span>
+                              <span className="text-[10px] text-blue-400 font-mono">
+                                {item.nome}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span
+                                className={`text-[10px] ${color.textTertiary}`}
+                              >
+                                Descrição
+                              </span>
+                              <span className="text-xs text-white font-medium truncate max-w-[180px]">
+                                {item.descricao}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div>
+                            {item.imagem && (
+                              <div className="space-y-2">
+                                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                  {item.imagem.map((foto, fIdx) => {
+                                    // Criamos a URL temporária para o arquivo File
+                                    const urlImagem = URL.createObjectURL(foto);
+
+                                    return (
+                                      <Dialog key={fIdx}>
+                                        <DialogTrigger asChild>
+                                          <div className="relative group cursor-pointer shrink-0">
+                                            <div className="w-14 h-14 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center overflow-hidden transition-all group-hover:border-blue-500/50">
+                                              {/* TAG IMG ADICIONADA AQUI */}
+                                              <Image
+                                                src={urlImagem}
+                                                width={40}
+                                                height={40}
+                                                alt="Preview"
+                                                className="w-full h-full object-cover"
+                                              />
+
+                                              <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 flex items-center justify-center transition-all">
+                                                <Maximize2
+                                                  size={14}
+                                                  className="opacity-0 group-hover:opacity-100 text-blue-400"
+                                                />
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </DialogTrigger>
+
+                                        <DialogContent className="max-w-4xl bg-black/90 border-gray-800 p-1">
+                                          <div className="w-full aspect-video rounded-lg bg-gray-900 flex flex-col items-center justify-center relative">
+                                            <Image
+                                              width={40}
+                                              height={40}
+                                              src={urlImagem}
+                                              alt="Preview Full"
+                                              className="max-w-full max-h-full object-contain"
+                                            />
+                                          </div>
+                                        </DialogContent>
+                                      </Dialog>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`flex items-center bg-white/5 rounded border border-gray-700 px-2 py-1 ${color.textBranco} gap-2`}
+                          >
+                            <span className="text-sm ">{item.quantidade}</span>
+                            <span className="text-[10px] pr-2 text-slate-500 uppercase">
+                              {item.unidade}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => removerMaterialSolicitado(item.nome)}
+                            className="text-red-400 hover:text-red-500 transition-colors cursor-pointer"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { CardFuncionarios } from "./_componentsFuncionarios/CardFuncionarios";
 import { useState } from "react";
 import { CardFilterFuncionarios } from "./_componentsFuncionarios/CardFilterFuncionarios";
 import { TabelaFuncionarios } from "./_componentsFuncionarios/TabelaFuncionarios";
+import { CreateUserDialog } from "./_componentsFuncionarios/CreateUser";
 
 export interface FilterFuncionariosProps {
   busca: string;
@@ -26,9 +27,7 @@ export default function Employees() {
         subTitulo="Gerenciar membros da equipe de manutenção"
         component={
           <div className="flex items-center gap-4">
-            <Button variant={"default"}>
-              <Plus /> Cadastrar Funcionario
-            </Button>
+            <CreateUserDialog />
           </div>
         }
       />

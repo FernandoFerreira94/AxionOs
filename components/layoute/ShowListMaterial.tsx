@@ -14,142 +14,18 @@ import {
 import { FilterCategoria } from "@/src/app/dashboard/materials/_componentsMateriais/FilterCategoria";
 import { color } from "@/src/app/styles/color";
 import { CheckCircle2, Minus, Package, Plus } from "lucide-react";
-import {
-  DepartamentoProps,
-  FiltersMateriais,
-  TabelaMaterialProps,
-} from "@/src/app/lib/type";
+import { FiltersMateriais, TabelaMaterialProps } from "@/src/app/lib/type";
 import { FilterDepartamento } from "@/src/app/dashboard/materials/_componentsMateriais/FilterDepartamento";
 import { InputSerachMaterial } from "@/src/app/dashboard/materials/_componentsMateriais/InputSerachMaterial";
 
-const infoMaterialLista: TabelaMaterialProps[] = [
-  // ELÉTRICA
-  {
-    codigo: "EL-1245",
-    descricao: "Luminária Quadrada Embutir 18W 3000K",
-    despartamento: "Shopping Colinas",
-    marca: "Avant",
-    categoria: "Eletrica",
-    quantidade: "23",
-    unidade: "un",
-  },
-  {
-    codigo: "EL-2090",
-    descricao: "Disjuntor Monofásico DIN 20A",
-    despartamento: "Shopping Colinas",
-    marca: "Schneider",
-    categoria: "Eletrica",
-    quantidade: "15",
-    unidade: "un",
-  },
-  {
-    codigo: "EL-3341",
-    descricao: "Cabo Flexível 2,5mm² Preto (Rolo 100m)",
-    despartamento: "Shopping Colinas",
-    marca: "Prysmian",
-    categoria: "Eletrica",
-    quantidade: "4", // Alerta de estoque baixo!
-    unidade: "rl",
-  },
-
-  // REFRIGERAÇÃO
-  {
-    codigo: "AR-45782",
-    descricao: "Gás Refrigerante R22 - Cilindro 1kg",
-    despartamento: "Shopping Colinas",
-    marca: "Chemours",
-    categoria: "Refrigeração",
-    quantidade: "3", // Alerta de estoque baixo!
-    unidade: "un",
-  },
-  {
-    codigo: "AR-1102",
-    descricao: "Capacitor de Partida 35uF 450V",
-    despartamento: "Shopping Colinas",
-    marca: "WEG",
-    categoria: "Refrigeração",
-    quantidade: "12",
-    unidade: "un",
-  },
-  {
-    codigo: "AR-9980",
-    descricao: "Fita Isolante Térmica Prata",
-    despartamento: "Shopping Colinas",
-    marca: "3M",
-    categoria: "Refrigeração",
-    quantidade: "8",
-    unidade: "un",
-  },
-
-  // HIDRÁULICA
-  {
-    codigo: "HL-2",
-    descricao: "Registro de Esfera 50mm (PVC)",
-    despartamento: "Shopping Colinas",
-    marca: "Tigre",
-    categoria: "Hidraulica",
-    quantidade: "2", // Alerta de estoque baixo!
-    unidade: "un",
-  },
-  {
-    codigo: "HL-1010",
-    descricao: "Válvula de Descarga Manual",
-    despartamento: "Shopping Colinas",
-    marca: "Deca",
-    categoria: "Hidraulica",
-    quantidade: "6",
-    unidade: "un",
-  },
-  {
-    codigo: "HL-5521",
-    descricao: "Anel de Vedação para Vaso Sanitário",
-    despartamento: "Shopping Colinas",
-    marca: "Censi",
-    categoria: "Hidraulica",
-    quantidade: "20",
-    unidade: "un",
-  },
-
-  // CIVIL / OUTROS
-  {
-    codigo: "CV-0012",
-    descricao: "Argamassa ACIII Cinza 20kg",
-    despartamento: "Shopping Colinas",
-    marca: "Votorantim",
-    categoria: "Civil",
-    quantidade: "10",
-    unidade: "sc",
-  },
-  {
-    codigo: "Ou-1154",
-    descricao: "Spray Desengripante WD-40 300ml",
-    despartamento: "Shopping Colinas",
-    marca: "WD-40",
-    categoria: "outros",
-    quantidade: "14",
-    unidade: "un",
-  },
-  {
-    codigo: "Ou-8874",
-    descricao: "Silicone Selante Transparente 280g",
-    despartamento: "Shopping Colinas",
-    marca: "TekBond",
-    categoria: "outros",
-    quantidade: "4", // Alerta de estoque baixo!
-    unidade: "un",
-  },
-  {
-    codigo: "EL-222132",
-    descricao: "Fita LED Natalina Branco Quente",
-    despartamento: "Shopping Colinas",
-    marca: null,
-    categoria: "Eletrica",
-    quantidade: "30",
-    unidade: "mts",
-  },
-];
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { MaterialSelecionado } from "@/src/app/dashboard/preventive/checklist/[id]/_componentes/TableCheckList";
+import { infoMaterialLista } from "@/src/app/dashboard/materials/listaMaterial";
 
+import {
+  RequestProps,
+  ShowSolicitacaoMaterial,
+} from "./SideBar/ShowSolicitacaoMaterial";
 // Interface para o controle interno do dialog
 interface CartItem {
   codigo: string;
@@ -158,12 +34,26 @@ interface CartItem {
   quantidadeUsada: number;
 }
 
-export function ShowListaMaterial({ idOs, onSelectMaterial }: any) {
+interface ListaMaterialProps {
+  idOs: string;
+  onSelectMaterial: (materiais: MaterialSelecionado[]) => void;
+  onChangeMaterial: (materiais: RequestProps) => void;
+  value: RequestProps[];
+}
+
+export function ShowListaMaterial({
+  idOs,
+  onSelectMaterial,
+  onChangeMaterial,
+  value,
+}: ListaMaterialProps) {
   const [filters, setFilters] = useState<FiltersMateriais>({
     departamento: "Shopping Colinas",
     categoria: "Todos",
     busca: "",
   });
+
+  const [isRequestDialogOpen, setIsRequestDialogOpen] = useState(false);
 
   // Estado temporário para o que o usuário está selecionando no momento
   const [cart, setCart] = useState<Record<string, CartItem>>({});
@@ -200,18 +90,21 @@ export function ShowListaMaterial({ idOs, onSelectMaterial }: any) {
       };
     });
   };
-
   const handleConfirmSelection = () => {
-    const selecionados = Object.values(cart).map((item) => ({
-      os_id: idOs,
-      material_id: item.codigo,
-      quantidade_usada: item.quantidadeUsada,
-      status_baixado: false,
-      data_gasto: new Date(),
-    }));
+    const selecionados: MaterialSelecionado[] = Object.values(cart).map(
+      (item) => ({
+        os_id: idOs,
+        material_id: item.codigo,
+        descricao: item.descricao, // Adicione isso para aparecer o nome na tabela
+        unidade: item.unidade, // Adicione isso para aparecer 'un', 'rl', etc
+        quantidade_usada: item.quantidadeUsada,
+        status_baixa: false,
+        data_gasto: new Date(),
+      }),
+    );
 
     onSelectMaterial(selecionados);
-    setCart({}); // Limpa após adicionar
+    setCart({});
   };
 
   return (
@@ -248,6 +141,15 @@ export function ShowListaMaterial({ idOs, onSelectMaterial }: any) {
           value={filters.busca}
           onChange={(val) => setFilters((p) => ({ ...p, busca: val }))}
         />
+
+        <Button
+          variant="default"
+          className="text-xs w-fit "
+          onClick={() => setIsRequestDialogOpen(true)}
+        >
+          {" "}
+          <Plus size={16} /> Solicitar Material não cadastrado
+        </Button>
 
         <ScrollArea className="h-[350px] mt-4 pr-4">
           <div className="flex flex-col gap-2">
@@ -331,6 +233,16 @@ export function ShowListaMaterial({ idOs, onSelectMaterial }: any) {
             </DialogClose>
           </div>
         </DialogFooter>
+        <ShowSolicitacaoMaterial
+          isRequestDialogOpen={isRequestDialogOpen}
+          setIsRequestDialogOpen={setIsRequestDialogOpen}
+          idOs={idOs}
+          onChange={(item) => {
+            onChangeMaterial(item); // Avisa o pai que tem item novo
+            setIsRequestDialogOpen(false); // Fecha o dialog
+          }}
+         
+        />
       </DialogContent>
     </Dialog>
   );
