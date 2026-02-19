@@ -7,7 +7,7 @@ import { Funnel } from "lucide-react";
 import { FilterDepartamento } from "./FilterDepartamento";
 import { FilterCategoria } from "./FilterCategoria";
 import { InputSerachMaterial } from "./InputSerachMaterial";
-import { FiltersMateriais } from "../page";
+import { FiltersMateriais } from "@/src/app/lib/type";
 
 interface CardFilterMateriaisProps {
   filters: FiltersMateriais;
