@@ -20,9 +20,33 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { CardFluxoInformacao } from "./_componentes/CardFluxoStatus";
 import { BadgePrioridade } from "@/components/layoute/BadgePrioridade";
+import { PrioridadeProps } from "@/src/app/lib/type";
 
+interface ListaAtividadesProps {
+  os: string;
+  status: string;
+  tipoServico: string;
+  tipo: string;
+  atividade: string;
+  tecnico: string;
+  dataAbertura: Date;
+  local: string;
+  complexo: string;
+  prioridade: PrioridadeProps;
+  historico: {
+    data: Date;
+    usuario: string;
+    acao: string;
+    descricao: string;
+    materiais: string[];
+    materialCompra?: string[];
+    apoio?: string[];
+    fotos?: File[] | string[] | null;
+    icon: React.ReactNode;
+  }[];
+}
 // Exemplo de dados com fotos
-const listAtividades = {
+const listAtividades: ListaAtividadesProps = {
   os: "#AC-1023",
   status: "Em Execução",
   tipoServico: "Corretiva",
@@ -132,13 +156,13 @@ export default function ServiceOrders() {
                           </span>
                           <div className="bg-black/40 p-3 rounded border border-gray-400/5">
                             <p className="text-sm leading-relaxed text-slate-300 italic">
-                              "{log.descricao}"
+                              {log.descricao}
                             </p>
                           </div>
                         </div>
 
                         {/* NOVO CAMPO: MINI CAROUSEL DE FOTOS */}
-                        {log.fotos && log.fotos.length > 0 && (
+                        {log.fotos && (
                           <div className="space-y-2">
                             <span className="text-[9px] uppercase font-bold text-slate-600 flex items-center gap-1">
                               <ImageIcon size={10} /> Evidências Fotográficas
@@ -171,7 +195,7 @@ export default function ServiceOrders() {
                                         className="text-slate-700"
                                       />
                                       <p className="text-slate-500 text-sm mt-4">
-                                        Visualização da Imagem: {foto}
+                                        Visualização da Imagem:
                                       </p>
                                       <span className="absolute bottom-4 right-4 text-[10px] text-slate-600 uppercase font-mono">
                                         {log.acao} - {formatarData(log.data)}
