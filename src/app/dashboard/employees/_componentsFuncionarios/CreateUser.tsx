@@ -115,7 +115,7 @@ export function CreateUserDialog() {
             <Input
               id="nome"
               placeholder="Ex: João Silva Sauro"
-              className="bg-black/40 border-slate-700 focus:border-indigo-500 text-sm"
+              className=" border-slate-700 focus:border-indigo-500 text-sm"
               value={formData.nome_completo}
               onChange={(e) =>
                 setFormData({ ...formData, nome_completo: e.target.value })
@@ -136,7 +136,7 @@ export function CreateUserDialog() {
               <Input
                 id="matricula"
                 placeholder="002345"
-                className="bg-black/40 border-slate-700 focus:border-indigo-500 text-sm"
+                className=" focus:border-indigo-500 text-sm"
                 value={formData.matricula}
                 onChange={(e) =>
                   setFormData({ ...formData, matricula: e.target.value })
@@ -158,7 +158,7 @@ export function CreateUserDialog() {
                   type={showPassword ? "text" : "password"}
                   placeholder="******"
                   maxLength={6}
-                  className="bg-black/40 border-slate-700 focus:border-indigo-500 text-sm"
+                  className="  focus:border-indigo-500 text-sm"
                   value={formData.password_hash}
                   onChange={(e) =>
                     setFormData({ ...formData, password_hash: e.target.value })
