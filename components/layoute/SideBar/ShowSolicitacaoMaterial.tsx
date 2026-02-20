@@ -92,7 +92,7 @@ export function ShowSolicitacaoMaterial({
 
   return (
     <Dialog open={isRequestDialogOpen} onOpenChange={setIsRequestDialogOpen}>
-      <DialogContent className="bg-slate-900 border-slate-700 text-white sm:max-w-[400px]">
+      <DialogContent className=" sm:max-w-[400px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Send size={18} className="text-blue-400" /> Solicitar Material
@@ -110,7 +110,7 @@ export function ShowSolicitacaoMaterial({
             <Input
               id="nome"
               placeholder="Ex: Contatora 24V Schneider"
-              className="bg-slate-950 border-slate-700 h-9 text-xs"
+              className=" text-xs"
               value={requestData.nome}
               onChange={(e) =>
                 setRequestData({ ...requestData, nome: e.target.value })
@@ -128,10 +128,10 @@ export function ShowSolicitacaoMaterial({
                   setRequestData({ ...requestData, unidade: e })
                 }
               >
-                <SelectTrigger className="w-full bg-slate-950">
+                <SelectTrigger className="w-full ">
                   <SelectValue placeholder="Selecione o departamento" />
                 </SelectTrigger>
-                <SelectContent className="z-[100] bg-slate-950">
+                <SelectContent className="z-[100] ">
                   {" "}
                   {/* Z-index alto aqui */}
                   {statusOptions.map((opt) => (
@@ -150,7 +150,7 @@ export function ShowSolicitacaoMaterial({
                 type="number"
                 id="quantidade"
                 placeholder="Ex: Contatora 24V Schneider"
-                className="bg-slate-950 border-slate-700 h-9 text-xs"
+                className=" text-xs"
                 value={requestData.quantidade}
                 onChange={(e) =>
                   setRequestData({
@@ -169,7 +169,7 @@ export function ShowSolicitacaoMaterial({
             <Textarea
               id="desc"
               placeholder="Descreva brevemente o material..."
-              className="bg-slate-950 border-slate-700 text-xs min-h-[80px]"
+              className=" text-xs min-h-[80px]"
               value={requestData.descricao}
               onChange={(e) =>
                 setRequestData({
@@ -208,7 +208,7 @@ export function ShowSolicitacaoMaterial({
               ))}
 
               {/* Botão "Adicionar Mais" estilo card */}
-              <label className="flex flex-col items-center justify-center aspect-square border-2 border-slate-700 border-dashed rounded-lg cursor-pointer bg-slate-950 hover:bg-slate-800 transition-all">
+              <label className="flex flex-col items-center justify-center aspect-square border-2 border-slate-700 border-dashed rounded-lg cursor-pointer bg-neutral-950 hover:bg-slate-900 transition-all">
                 <Camera size={20} className="text-slate-500 mb-1" />
                 <span className="text-[9px] text-slate-500">Adicionar</span>
                 <input

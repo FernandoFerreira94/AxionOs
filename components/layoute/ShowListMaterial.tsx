@@ -115,7 +115,7 @@ export function ShowListaMaterial({
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-2xl bg-slate-950 border-slate-800 text-white">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-xl">
             <Package size={22} className={color.textIconAmarelo} />
@@ -161,8 +161,8 @@ export function ShowListaMaterial({
                   key={item.codigo}
                   className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
                     qtyInCart > 0
-                      ? "border-blue-500 bg-blue-500/5"
-                      : "border-slate-800 bg-slate-900/50"
+                      ? "border-blue-500 bg-slate-900"
+                      : "border-slate-800 bg-neutral-950"
                   }`}
                 >
                   <div className="flex flex-col gap-1">
@@ -241,7 +241,6 @@ export function ShowListaMaterial({
             onChangeMaterial(item); // Avisa o pai que tem item novo
             setIsRequestDialogOpen(false); // Fecha o dialog
           }}
-         
         />
       </DialogContent>
     </Dialog>
