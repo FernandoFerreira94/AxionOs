@@ -172,14 +172,11 @@ export function CreateEquipamentoDialog() {
                     <Cpu size={12} /> Tipo
                   </Label>
 
-                  <Select
-                    onValueChange={handleCodChange}
-                    required // CHAMA A FUNÇÃO DE FILTRO AQUI
-                  >
+                  <Select onValueChange={handleCodChange} required>
                     <SelectTrigger className=" text-sm w-full">
                       <SelectValue placeholder="Selecione modelo..." />
                     </SelectTrigger>
-                    <SelectContent className=" border-slate-700 text-white z-[100] w-full">
+                    <SelectContent className=" text-white z-[100] w-full">
                       {formData.categoria === "refrigeracao" && (
                         <>
                           {tipo.refrigeracao.map((item, index) => (
